@@ -1,39 +1,65 @@
 /**
  * Theme configuration for NativeWind/Tailwind CSS.
  *
- * This file defines the design tokens used throughout the application,
- * including colors, spacing, typography, and other design system values.
+ * This file defines all design tokens used throughout the application.
  */
 
 export const theme = {
   colors: {
-    // Primary colors
+    // Primary - Main app blue
     primary: {
+      DEFAULT: '#136dec',
       50: '#eff6ff',
       100: '#dbeafe',
       200: '#bfdbfe',
       300: '#93c5fd',
       400: '#60a5fa',
-      500: '#3b82f6',
-      600: '#2563eb',
-      700: '#1d4ed8',
-      800: '#1e40af',
-      900: '#1e3a8a',
-      950: '#172554',
+      500: '#136dec', // Main color
+      600: '#1059c9',
+      700: '#0d45a6',
+      800: '#0a3483',
+      900: '#072560',
     },
-    // Secondary colors
-    secondary: {
-      50: '#f8fafc',
-      100: '#f1f5f9',
-      200: '#e2e8f0',
-      300: '#cbd5e1',
-      400: '#94a3b8',
-      500: '#64748b',
-      600: '#475569',
-      700: '#334155',
-      800: '#1e293b',
-      900: '#0f172a',
+
+    // Background colors
+    background: {
+      light: '#f6f7f8',
+      dark: '#101822',
     },
+
+    // Surface colors (Cards, panels)
+    surface: {
+      light: '#ffffff',
+      dark: {
+        DEFAULT: '#1e2936',
+        card: '#1a222d',
+        toolbar: '#161f2b',
+        alt: '#1C2530',
+      },
+    },
+
+    // Border colors
+    border: {
+      light: '#e5e7eb',
+      dark: '#2A3645',
+    },
+
+    // Text colors
+    text: {
+      primary: {
+        light: '#0f172a',
+        dark: '#ffffff',
+      },
+      secondary: {
+        light: '#64748b',
+        dark: '#92a9c9',
+      },
+      tertiary: {
+        light: '#94a3b8',
+        dark: '#64748b',
+      },
+    },
+
     // Semantic colors
     success: {
       50: '#f0fdf4',
@@ -71,7 +97,8 @@ export const theme = {
       800: '#92400e',
       900: '#78350f',
     },
-    // Neutral colors
+
+    // Neutral/Gray scale
     gray: {
       50: '#f9fafb',
       100: '#f3f4f6',
@@ -84,52 +111,97 @@ export const theme = {
       800: '#1f2937',
       900: '#111827',
     },
-    // Background colors
-    background: {
-      light: '#ffffff',
-      dark: '#000000',
-      gray: '#f5f5f5',
-    },
-    // Text colors
-    text: {
-      primary: '#111827',
-      secondary: '#6b7280',
-      tertiary: '#9ca3af',
-      inverse: '#ffffff',
+
+    // Slate scale (for text and borders)
+    slate: {
+      50: '#f8fafc',
+      100: '#f1f5f9',
+      200: '#e2e8f0',
+      300: '#cbd5e1',
+      400: '#94a3b8',
+      500: '#64748b',
+      600: '#475569',
+      700: '#334155',
+      800: '#1e293b',
+      900: '#0f172a',
     },
   },
+
+  // Spacing scale
   spacing: {
-    xs: 4,
-    sm: 8,
-    md: 16,
-    lg: 24,
-    xl: 32,
-    '2xl': 48,
-    '3xl': 64,
+    0: 0,
+    1: 4,
+    2: 8,
+    3: 12,
+    4: 16,
+    5: 20,
+    6: 24,
+    8: 32,
+    10: 40,
+    12: 48,
+    16: 64,
+    20: 80,
+    24: 96,
   },
+
+  // Border radius following Stitch
   borderRadius: {
-    sm: 4,
-    md: 8,
-    lg: 12,
-    xl: 16,
+    none: 0,
+    sm: 4, // 0.25rem - DEFAULT
+    DEFAULT: 4, // 0.25rem
+    md: 8, // 0.5rem
+    lg: 12, // 0.75rem - lg
+    xl: 16, // 1rem - 2xl
+    '2xl': 16,
+    '3xl': 24,
     full: 9999,
   },
-  fontSize: {
-    xs: 12,
-    sm: 14,
-    base: 16,
-    lg: 18,
-    xl: 20,
-    '2xl': 24,
-    '3xl': 30,
-    '4xl': 36,
+
+  // Typography - Lexend as main font
+  fontFamily: {
+    display: ['Lexend', 'sans-serif'],
+    body: ['Noto Sans', 'sans-serif'],
+    sans: ['Lexend', 'sans-serif'],
   },
+
+  fontSize: {
+    xs: 10, // 0.625rem
+    sm: 12, // 0.75rem
+    base: 14, // 0.875rem
+    lg: 16, // 1rem
+    xl: 18, // 1.125rem
+    '2xl': 20, // 1.25rem
+    '3xl': 24, // 1.5rem
+    '4xl': 28, // 1.75rem
+    '5xl': 32, // 2rem
+    '6xl': 36, // 2.25rem
+  },
+
   fontWeight: {
+    light: '300',
     normal: '400',
     medium: '500',
     semibold: '600',
     bold: '700',
+    extrabold: '800',
   },
+
+  lineHeight: {
+    tight: 1.2,
+    normal: 1.5,
+    relaxed: 1.75,
+  },
+
+  // Letter spacing (tracking)
+  letterSpacing: {
+    tighter: -0.015, // tracking-[-0.015em]
+    tight: -0.01,
+    normal: 0,
+    wide: 0.025,
+    wider: 0.05,
+  },
+
+  // Shadows for React Native
   shadows: {
     sm: {
       shadowColor: '#000',
@@ -152,6 +224,45 @@ export const theme = {
       shadowRadius: 8,
       elevation: 8,
     },
+    xl: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 8 },
+      shadowOpacity: 0.2,
+      shadowRadius: 16,
+      elevation: 12,
+    },
+    '2xl': {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 12 },
+      shadowOpacity: 0.25,
+      shadowRadius: 24,
+      elevation: 16,
+    },
+    // Specific shadow for primary color
+    primary: {
+      shadowColor: '#136dec',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.25,
+      shadowRadius: 12,
+      elevation: 8,
+    },
+  },
+
+  // Opacity scale
+  opacity: {
+    0: 0,
+    5: 0.05,
+    10: 0.1,
+    20: 0.2,
+    30: 0.3,
+    40: 0.4,
+    50: 0.5,
+    60: 0.6,
+    70: 0.7,
+    80: 0.8,
+    90: 0.9,
+    95: 0.95,
+    100: 1,
   },
 } as const;
 

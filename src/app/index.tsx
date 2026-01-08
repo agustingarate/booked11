@@ -1,4 +1,3 @@
-import '@common/presentation/theme/unistyles';
 import { Redirect } from 'expo-router';
 import 'expo-router/entry';
 
