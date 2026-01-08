@@ -15,6 +15,7 @@ import { useAuthStore } from '../../../domain/store/authStore';
 import { useLoginViewModel } from '../../viewModels/LoginViewModel';
 
 import { useI18n } from '@common/domain/hooks/i18n';
+import { Button, ButtonRadius } from '@common/index';
 
 // Constante reutilizable para el estilo de input
 const INPUT_CLASSES =
@@ -115,7 +116,16 @@ const LoginScreen: FC = () => {
           textContentType="oneTimeCode"
           testID="loginScreen.password"
         />
-        <TouchableOpacity
+        <Button
+          text={t('loginScreen.login')}
+          leftIcon="account-tree"
+          onPress={handleLogin}
+          disabled={isLoading}
+          testID="loginScreen.login"
+          variant="primary"
+          radius={ButtonRadius.ROUNDED}
+        />
+        {/* <TouchableOpacity
           className="h-14 bg-blue-600 rounded-xl justify-center items-center"
           onPress={handleLogin}
           disabled={isLoading}
@@ -123,7 +133,7 @@ const LoginScreen: FC = () => {
           <Text className="text-white text-lg font-bold">
             {t('loginScreen.login')}
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View className="mt-4 flex items-center">
           <TouchableOpacity
             onPress={() => router.push('/auth/register')}
