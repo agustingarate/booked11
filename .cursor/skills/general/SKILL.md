@@ -16,6 +16,7 @@ General rules:
 - Do not introduce unnecessary abstractions.
 - Prefer composition over inheritance.
 - Use english as main language
+- Use PNPM as package manager.
 
 React Native & Expo:
 
