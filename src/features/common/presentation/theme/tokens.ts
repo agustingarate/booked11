@@ -1,11 +1,11 @@
 /**
  * Design Tokens
  *
- * Tokens de diseño extraídos del Design System de Stitch.
- * Este archivo proporciona acceso directo a los valores de diseño
- * sin necesidad de importar el tema completo.
+ * Design tokens extracted from Stitch Design System.
+ * This file provides direct access to design values
+ * without needing to import the complete theme.
  *
- * Uso:
+ * Usage:
  * import { colors, spacing, typography } from '@common/presentation/theme/tokens';
  */
 
@@ -53,7 +53,7 @@ export const colors = {
 
 export const spacing = {
   ...theme.spacing,
-  // Aliases comunes
+  // Common aliases
   none: theme.spacing[0],
   xs: theme.spacing[1],
   sm: theme.spacing[2],
@@ -98,7 +98,7 @@ export const opacity = theme.opacity;
 // ==================== COMMON STYLES ====================
 
 /**
- * Estilos comunes reutilizables basados en el design system
+ * Reusable common styles based on the design system
  */
 export const commonStyles = {
   // Cards
@@ -173,7 +173,7 @@ export const commonStyles = {
 // ==================== UTILITY FUNCTIONS ====================
 
 /**
- * Obtiene el color adecuado según el tema (light/dark)
+ * Gets the appropriate color based on theme (light/dark)
  */
 export const getColorByTheme = (
   isDark: boolean,
@@ -184,7 +184,7 @@ export const getColorByTheme = (
 };
 
 /**
- * Genera un estilo de sombra según la elevación
+ * Generates a shadow style based on elevation
  */
 export const getShadow = (
   elevation: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'primary'
@@ -193,7 +193,7 @@ export const getShadow = (
 };
 
 /**
- * Convierte spacing a número (útil para cálculos)
+ * Converts spacing to number (useful for calculations)
  */
 export const getSpacing = (key: keyof typeof spacing): number => {
   return spacing[key] as number;

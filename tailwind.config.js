@@ -7,7 +7,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      // Colors from Stitch design system
+      // Colors from Stitch Design System
       colors: {
         primary: theme.colors.primary,
         background: theme.colors.background,

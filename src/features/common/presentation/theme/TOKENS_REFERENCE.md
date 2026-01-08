@@ -1,37 +1,37 @@
 # 📖 Tokens Reference - Quick Lookup
 
-Referencia rápida de todos los tokens disponibles en el Design System.
+Quick reference of all available tokens in the Design System.
 
 ## 🎨 Colors
 
 ### Primary
 
-| Token | Valor | Preview | Uso |
-|-------|-------|---------|-----|
-| `colors.primary` | `#136dec` | 🟦 | Botones CTA, enlaces, elementos activos |
-| `colors.primaryLight` | `#dbeafe` | 🔵 | Backgrounds hover, badges |
-| `colors.primaryDark` | `#0d45a6` | 🔷 | Pressed states, bordes |
+| Token | Value | Preview | Usage |
+|-------|-------|---------|-------|
+| `colors.primary` | `#136dec` | 🟦 | CTA buttons, links, active elements |
+| `colors.primaryLight` | `#dbeafe` | 🔵 | Hover backgrounds, badges |
+| `colors.primaryDark` | `#0d45a6` | 🔷 | Pressed states, borders |
 
 **NativeWind Classes:**
 - `bg-primary` / `text-primary` / `border-primary`
 
 ### Backgrounds
 
-| Token | Valor | Preview | Dark Mode | Uso |
-|-------|-------|---------|-----------|-----|
-| `colors.backgroundLight` | `#f6f7f8` | ⬜ | - | Screen background claro |
-| `colors.backgroundDark` | `#101822` | ⬛ | ✓ | Screen background oscuro |
+| Token | Value | Preview | Dark Mode | Usage |
+|-------|-------|---------|-----------|-------|
+| `colors.backgroundLight` | `#f6f7f8` | ⬜ | - | Light screen background |
+| `colors.backgroundDark` | `#101822` | ⬛ | ✓ | Dark screen background |
 
 **NativeWind Classes:**
 - `bg-background-light` / `dark:bg-background-dark`
 
 ### Surfaces (Cards, Panels)
 
-| Token | Valor | Preview | Dark Mode | Uso |
-|-------|-------|---------|-----------|-----|
-| `colors.surfaceLight` | `#ffffff` | ⬜ | - | Cards, modals en light mode |
-| `colors.surfaceDark` | `#1e2936` | ⬛ | ✓ | Cards, modals en dark mode |
-| `colors.surfaceCard` | `#1a222d` | ⬛ | ✓ | Cards elevados |
+| Token | Value | Preview | Dark Mode | Usage |
+|-------|-------|---------|-----------|-------|
+| `colors.surfaceLight` | `#ffffff` | ⬜ | - | Cards, modals in light mode |
+| `colors.surfaceDark` | `#1e2936` | ⬛ | ✓ | Cards, modals in dark mode |
+| `colors.surfaceCard` | `#1a222d` | ⬛ | ✓ | Elevated cards |
 | `colors.surfaceToolbar` | `#161f2b` | ⬛ | ✓ | Toolbars, bottom bars |
 
 **NativeWind Classes:**
@@ -41,22 +41,22 @@ Referencia rápida de todos los tokens disponibles en el Design System.
 
 ### Borders
 
-| Token | Valor | Preview | Dark Mode | Uso |
-|-------|-------|---------|-----------|-----|
-| `colors.borderLight` | `#e5e7eb` | 🔲 | - | Bordes en light mode |
-| `colors.borderDark` | `#2A3645` | ⬛ | ✓ | Bordes en dark mode |
+| Token | Value | Preview | Dark Mode | Usage |
+|-------|-------|---------|-----------|-------|
+| `colors.borderLight` | `#e5e7eb` | 🔲 | - | Borders in light mode |
+| `colors.borderDark` | `#2A3645` | ⬛ | ✓ | Borders in dark mode |
 
 **NativeWind Classes:**
 - `border-light` / `dark:border-dark`
 
 ### Text Colors
 
-| Token | Valor | Dark Mode | Uso |
-|-------|-------|-----------|-----|
-| `colors.textPrimaryLight` | `#0f172a` | - | Texto principal (light) |
-| `colors.textPrimaryDark` | `#ffffff` | ✓ | Texto principal (dark) |
-| `colors.textSecondaryLight` | `#64748b` | - | Texto secundario (light) |
-| `colors.textSecondaryDark` | `#92a9c9` | ✓ | Texto secundario (dark) |
+| Token | Value | Dark Mode | Usage |
+|-------|-------|-----------|-------|
+| `colors.textPrimaryLight` | `#0f172a` | - | Primary text (light) |
+| `colors.textPrimaryDark` | `#ffffff` | ✓ | Primary text (dark) |
+| `colors.textSecondaryLight` | `#64748b` | - | Secondary text (light) |
+| `colors.textSecondaryDark` | `#92a9c9` | ✓ | Secondary text (dark) |
 
 **NativeWind Classes:**
 - `text-text-primary-light` / `dark:text-text-primary-dark`
@@ -64,11 +64,11 @@ Referencia rápida de todos los tokens disponibles en el Design System.
 
 ### Semantic Colors
 
-| Token | Valor | Preview | Uso |
-|-------|-------|---------|-----|
-| `colors.success` | `#22c55e` | 🟢 | Estados exitosos, confirmaciones |
-| `colors.error` | `#ef4444` | 🔴 | Errores, acciones destructivas |
-| `colors.warning` | `#f59e0b` | 🟡 | Advertencias, precauciones |
+| Token | Value | Preview | Usage |
+|-------|-------|---------|-------|
+| `colors.success` | `#22c55e` | 🟢 | Success states, confirmations |
+| `colors.error` | `#ef4444` | 🔴 | Errors, destructive actions |
+| `colors.warning` | `#f59e0b` | 🟡 | Warnings, cautions |
 
 **NativeWind Classes:**
 - `bg-success` / `text-success`
@@ -77,7 +77,7 @@ Referencia rápida de todos los tokens disponibles en el Design System.
 
 ### Gray Scale
 
-| Token | Valor | Preview |
+| Token | Value | Preview |
 |-------|-------|---------|
 | `colors.gray[50]` | `#f9fafb` | ⬜ |
 | `colors.gray[100]` | `#f3f4f6` | 🔲 |
@@ -95,39 +95,39 @@ Referencia rápida de todos los tokens disponibles en el Design System.
 
 ### Slate Scale
 
-| Token | Valor | Preview | Uso |
-|-------|-------|---------|-----|
-| `colors.slate[100]` | `#f1f5f9` | ⬜ | Backgrounds sutiles |
-| `colors.slate[200]` | `#e2e8f0` | 🔲 | Borders suaves |
-| `colors.slate[400]` | `#94a3b8` | ⬜ | Texto terciario |
-| `colors.slate[500]` | `#64748b` | 🔲 | Texto secundario |
-| `colors.slate[600]` | `#475569` | ⬛ | Texto en surfaces claras |
-| `colors.slate[700]` | `#334155` | ⬛ | Texto enfatizado |
-| `colors.slate[900]` | `#0f172a` | ⬛ | Texto principal |
+| Token | Value | Preview | Usage |
+|-------|-------|---------|-------|
+| `colors.slate[100]` | `#f1f5f9` | ⬜ | Subtle backgrounds |
+| `colors.slate[200]` | `#e2e8f0` | 🔲 | Soft borders |
+| `colors.slate[400]` | `#94a3b8` | ⬜ | Tertiary text |
+| `colors.slate[500]` | `#64748b` | 🔲 | Secondary text |
+| `colors.slate[600]` | `#475569` | ⬛ | Text on light surfaces |
+| `colors.slate[700]` | `#334155` | ⬛ | Emphasized text |
+| `colors.slate[900]` | `#0f172a` | ⬛ | Primary text |
 
 **NativeWind Classes:**
 - `bg-slate-100` / `text-slate-500` / etc.
 
 ## 📏 Spacing
 
-| Token | Valor | Preview | Uso Común |
-|-------|-------|---------|-----------|
-| `spacing[0]` | `0px` | - | Sin espacio |
-| `spacing[1]` | `4px` | `▫` | Espacios muy pequeños |
-| `spacing[2]` | `8px` | `▫▫` | Espacios pequeños |
-| `spacing[3]` | `12px` | `▫▫▫` | Gaps mínimos |
-| `spacing[4]` | `16px` | `▫▫▫▫` | **Más usado** - Padding estándar |
-| `spacing[5]` | `20px` | `▫▫▫▫▫` | Padding generoso |
-| `spacing[6]` | `24px` | `▫▫▫▫▫▫` | Secciones |
-| `spacing[8]` | `32px` | `▫▫▫▫▫▫▫▫` | Separación grande |
+| Token | Value | Preview | Common Usage |
+|-------|-------|---------|--------------|
+| `spacing[0]` | `0px` | - | No space |
+| `spacing[1]` | `4px` | `▫` | Very small spaces |
+| `spacing[2]` | `8px` | `▫▫` | Small spaces |
+| `spacing[3]` | `12px` | `▫▫▫` | Minimal gaps |
+| `spacing[4]` | `16px` | `▫▫▫▫` | **Most used** - Standard padding |
+| `spacing[5]` | `20px` | `▫▫▫▫▫` | Generous padding |
+| `spacing[6]` | `24px` | `▫▫▫▫▫▫` | Sections |
+| `spacing[8]` | `32px` | `▫▫▫▫▫▫▫▫` | Large separation |
 | `spacing[10]` | `40px` | - | Headers |
-| `spacing[12]` | `48px` | - | Secciones grandes |
-| `spacing[16]` | `64px` | - | Márgenes enormes |
+| `spacing[12]` | `48px` | - | Large sections |
+| `spacing[16]` | `64px` | - | Huge margins |
 
 **NativeWind Classes:**
 - `p-4` = padding 16px
-- `px-6` = padding horizontal 24px
-- `py-3` = padding vertical 12px
+- `px-6` = horizontal padding 24px
+- `py-3` = vertical padding 12px
 - `m-4` = margin 16px
 - `gap-4` = gap 16px
 
@@ -135,10 +135,10 @@ Referencia rápida de todos los tokens disponibles en el Design System.
 
 ### Font Family
 
-| Token | Valor | Uso |
-|-------|-------|-----|
-| `fontFamily.display` | `Lexend` | Títulos, headings |
-| `fontFamily.body` | `Noto Sans` | Cuerpo de texto |
+| Token | Value | Usage |
+|-------|-------|-------|
+| `fontFamily.display` | `Lexend` | Titles, headings |
+| `fontFamily.body` | `Noto Sans` | Body text |
 | `fontFamily.sans` | `Lexend` | Default |
 
 **NativeWind Classes:**
@@ -146,16 +146,16 @@ Referencia rápida de todos los tokens disponibles en el Design System.
 
 ### Font Sizes
 
-| Token | Valor | Preview | Uso |
-|-------|-------|---------|-----|
+| Token | Value | Preview | Usage |
+|-------|-------|---------|-------|
 | `fontSize.xs` | `10px` | ᵃᵃ | Badges, footnotes |
-| `fontSize.sm` | `12px` | ᵃᴬ | Captions, subtítulos |
-| `fontSize.base` | `14px` | Aa | **Texto base** |
-| `fontSize.lg` | `16px` | **Aa** | Texto principal |
-| `fontSize.xl` | `18px` | **AA** | Subtítulos destacados |
-| `fontSize['2xl']` | `20px` | **AA** | Títulos pequeños |
-| `fontSize['3xl']` | `24px` | **AA** | Títulos medianos |
-| `fontSize['4xl']` | `28px` | **AA** | Títulos grandes |
+| `fontSize.sm` | `12px` | ᵃᴬ | Captions, subtitles |
+| `fontSize.base` | `14px` | Aa | **Base text** |
+| `fontSize.lg` | `16px` | **Aa** | Main text |
+| `fontSize.xl` | `18px` | **AA** | Highlighted subtitles |
+| `fontSize['2xl']` | `20px` | **AA** | Small titles |
+| `fontSize['3xl']` | `24px` | **AA** | Medium titles |
+| `fontSize['4xl']` | `28px` | **AA** | Large titles |
 | `fontSize['5xl']` | `32px` | **AA** | Headers |
 | `fontSize['6xl']` | `36px` | **AA** | Hero titles |
 
@@ -164,47 +164,47 @@ Referencia rápida de todos los tokens disponibles en el Design System.
 
 ### Font Weights
 
-| Token | Valor | Preview | Uso |
-|-------|-------|---------|-----|
-| `fontWeight.light` | `300` | Light | Texto delicado |
-| `fontWeight.normal` | `400` | Normal | Texto regular |
-| `fontWeight.medium` | `500` | **Medium** | Texto importante |
-| `fontWeight.semibold` | `600` | **Semibold** | Subtítulos |
-| `fontWeight.bold` | `700` | **Bold** | Títulos, CTAs |
-| `fontWeight.extrabold` | `800` | **Extra Bold** | Super destacado |
+| Token | Value | Preview | Usage |
+|-------|-------|---------|-------|
+| `fontWeight.light` | `300` | Light | Delicate text |
+| `fontWeight.normal` | `400` | Normal | Regular text |
+| `fontWeight.medium` | `500` | **Medium** | Important text |
+| `fontWeight.semibold` | `600` | **Semibold** | Subtitles |
+| `fontWeight.bold` | `700` | **Bold** | Titles, CTAs |
+| `fontWeight.extrabold` | `800` | **Extra Bold** | Super emphasized |
 
 **NativeWind Classes:**
 - `font-light` / `font-normal` / `font-medium` / `font-semibold` / `font-bold` / `font-extrabold`
 
 ## 📐 Border Radius
 
-| Token | Valor | Preview | Uso |
-|-------|-------|---------|-----|
-| `radius.none` | `0px` | ▭ | Sin bordes redondeados |
-| `radius.sm` | `4px` | ▢ | Bordes sutiles |
+| Token | Value | Preview | Usage |
+|-------|-------|---------|-------|
+| `radius.none` | `0px` | ▭ | No rounded borders |
+| `radius.sm` | `4px` | ▢ | Subtle borders |
 | `radius.DEFAULT` | `4px` | ▢ | Default |
-| `radius.md` | `8px` | ▢ | Cards pequeñas |
-| `radius.lg` | `12px` | ▢ | **Más usado** - Cards, buttons |
+| `radius.md` | `8px` | ▢ | Small cards |
+| `radius.lg` | `12px` | ▢ | **Most used** - Cards, buttons |
 | `radius.xl` | `16px` | ▢ | Modals, panels |
-| `radius['2xl']` | `16px` | ▢ | Elementos grandes |
+| `radius['2xl']` | `16px` | ▢ | Large elements |
 | `radius['3xl']` | `24px` | ▢ | Bottom sheets |
-| `radius.full` | `9999px` | ● | Círculos, pills |
+| `radius.full` | `9999px` | ● | Circles, pills |
 
 **NativeWind Classes:**
 - `rounded-none` / `rounded-sm` / `rounded` / `rounded-md` / `rounded-lg` / `rounded-xl` / `rounded-full`
 
 ## 💫 Shadows (React Native)
 
-| Token | Elevation | Uso |
-|-------|-----------|-----|
-| `shadows.sm` | 2 | Elementos sutilmente elevados |
+| Token | Elevation | Usage |
+|-------|-----------|-------|
+| `shadows.sm` | 2 | Subtly elevated elements |
 | `shadows.md` | 4 | Cards, buttons |
 | `shadows.lg` | 8 | Modals, floating elements |
 | `shadows.xl` | 12 | Sheets, popups |
 | `shadows['2xl']` | 16 | Hero elements |
-| `shadows.primary` | 8 | Elementos con color primary |
+| `shadows.primary` | 8 | Elements with primary color |
 
-**Uso:**
+**Usage:**
 ```typescript
 style={{ ...shadows.md }}
 ```
@@ -214,29 +214,29 @@ style={{ ...shadows.md }}
 
 ## 🔍 Opacity
 
-| Token | Valor | Preview | Uso |
-|-------|-------|---------|-----|
-| `opacity[0]` | `0` | ⬜ (invisible) | Oculto |
-| `opacity[5]` | `0.05` | ⬜ | Muy sutil |
+| Token | Value | Preview | Usage |
+|-------|-------|---------|-------|
+| `opacity[0]` | `0` | ⬜ (invisible) | Hidden |
+| `opacity[5]` | `0.05` | ⬜ | Very subtle |
 | `opacity[10]` | `0.1` | ⬜ | Hover backgrounds |
-| `opacity[20]` | `0.2` | ⬜ | Overlays ligeros |
+| `opacity[20]` | `0.2` | ⬜ | Light overlays |
 | `opacity[40]` | `0.4` | ▢ | Disabled states |
-| `opacity[50]` | `0.5` | ▢ | Semi-transparente |
-| `opacity[80]` | `0.8` | ▢ | Casi opaco |
-| `opacity[100]` | `1` | ⬛ | Opaco |
+| `opacity[50]` | `0.5` | ▢ | Semi-transparent |
+| `opacity[80]` | `0.8` | ▢ | Almost opaque |
+| `opacity[100]` | `1` | ⬛ | Opaque |
 
 **NativeWind Classes:**
 - `opacity-0` / `opacity-50` / `opacity-100`
 
-## 📱 Breakpoints (Unistyles)
+## 📱 Breakpoints
 
-| Breakpoint | Ancho | Dispositivo |
-|------------|-------|-------------|
-| `xs` | 0px | Móviles pequeños |
-| `sm` | 380px | Móviles estándar |
+| Breakpoint | Width | Device |
+|------------|-------|--------|
+| `xs` | 0px | Small mobiles |
+| `sm` | 380px | Standard mobiles |
 | `md` | 768px | Tablets |
 | `lg` | 1024px | Desktop |
-| `xl` | 1280px | Desktop grande |
+| `xl` | 1280px | Large desktop |
 
 ## 🎯 Common Styles
 
@@ -287,25 +287,25 @@ style={{ ...shadows.md }}
 }
 ```
 
-## 📝 Ejemplos de Combinaciones Comunes
+## 📝 Common Combination Examples
 
-### Card con título y descripción
+### Card with title and description
 ```tsx
 <View className="bg-white dark:bg-surface-dark p-4 rounded-xl shadow-md">
   <Text className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-    Título
+    Title
   </Text>
   <Text className="text-sm text-slate-600 dark:text-slate-400">
-    Descripción
+    Description
   </Text>
 </View>
 ```
 
-### Button primary
+### Primary button
 ```tsx
 <TouchableOpacity className="bg-primary py-3 px-6 rounded-lg">
   <Text className="text-white text-base font-bold text-center">
-    Acción
+    Action
   </Text>
 </TouchableOpacity>
 ```
@@ -314,11 +314,11 @@ style={{ ...shadows.md }}
 ```tsx
 <TextInput
   className="bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white"
-  placeholder="Escribe aquí..."
+  placeholder="Type here..."
   placeholderTextColor="#94a3b8"
 />
 ```
 
 ---
 
-**Tip**: Guarda este archivo como referencia rápida mientras desarrollas. Todos estos tokens están disponibles en el código y son type-safe con TypeScript. 🎨
+**Tip**: Save this file as a quick reference while developing. All these tokens are available in code and are type-safe with TypeScript. 🎨

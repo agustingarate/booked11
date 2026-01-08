@@ -1,27 +1,27 @@
 # Theme System - Design Tokens
 
-Sistema de diseño basado en los tokens extraídos de **Stitch Design System** para usar con **NativeWind/Tailwind CSS**.
+Design system based on tokens extracted from **Stitch Design System** for use with **NativeWind/Tailwind CSS**.
 
-## 📁 Estructura de Archivos
+## 📁 File Structure
 
 ```
 theme/
-├── README.md           # Esta documentación
-├── tokens.ts           # Tokens exportados para uso directo con StyleSheet
-└── ../../main/theme.ts # Definición base de todos los tokens
+├── README.md           # This documentation
+├── tokens.ts           # Tokens exported for direct use with StyleSheet
+└── ../../main/theme.ts # Base definition of all tokens
 ```
 
-## 🎨 Paleta de Colores
+## 🎨 Color Palette
 
 ### Primary Color
 
-- **Principal**: `#136dec` (Azul característico de la app)
-- Usado para CTAs, enlaces, elementos activos
+- **Main**: `#136dec` (App's characteristic blue)
+- Used for CTAs, links, active elements
 
 ### Backgrounds
 
-- **Light**: `#f6f7f8` - Fondo claro principal
-- **Dark**: `#101822` - Fondo oscuro principal
+- **Light**: `#f6f7f8` - Main light background
+- **Dark**: `#101822` - Main dark background
 
 ### Surfaces (Cards, Panels)
 
@@ -61,8 +61,8 @@ theme/
 
 ### Font Family
 
-- **Display**: Lexend (principal)
-- **Body**: Noto Sans (secundaria)
+- **Display**: Lexend (main)
+- **Body**: Noto Sans (secondary)
 
 ### Font Sizes
 
@@ -105,7 +105,7 @@ full: 9999px
 
 ## 💫 Shadows
 
-Sombras predefinidas para React Native:
+Predefined shadows for React Native:
 
 ```typescript
 sm: elevation 2
@@ -113,12 +113,12 @@ md: elevation 4
 lg: elevation 8
 xl: elevation 12
 2xl: elevation 16
-primary: Sombra con color primary
+primary: Shadow with primary color
 ```
 
-## 🚀 Uso
+## 🚀 Usage
 
-### Opción 1: Con NativeWind/Tailwind (Recomendado)
+### Option 1: With NativeWind/Tailwind (Recommended)
 
 ```tsx
 import { View, Text } from 'react-native';
@@ -134,7 +134,7 @@ export const MyComponent = () => {
 };
 ```
 
-### Opción 2: Con Tokens directos (Para estilos dinámicos)
+### Option 2: With Direct Tokens (For dynamic styles)
 
 ```typescript
 import {
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
 });
 ```
 
-### Combinar ambas opciones
+### Combining Both Options
 
 ```tsx
 import { View, Text } from 'react-native';
@@ -177,12 +177,12 @@ export const MyComponent = ({ backgroundColor }) => {
 };
 ```
 
-## 🎯 Estilos Comunes
+## 🎯 Common Styles
 
-El archivo `tokens.ts` exporta estilos comunes reutilizables:
+The `tokens.ts` file exports reusable common styles:
 
 ```typescript
-import { commonStyles } from '@/features/common/presentation/theme/tokens';
+import { commonStyles } from '@common/presentation/theme/tokens';
 
 // Card
 <View style={commonStyles.card}>
@@ -202,19 +202,19 @@ import { commonStyles } from '@/features/common/presentation/theme/tokens';
 
 ## 🌗 Dark Mode
 
-### Con NativeWind (Automático)
+### With NativeWind (Automatic)
 
-NativeWind detecta automáticamente el theme del sistema. Solo usa el prefijo `dark:`:
+NativeWind automatically detects the system theme. Just use the `dark:` prefix:
 
 ```tsx
 <View className="bg-white dark:bg-surface-dark">
-  <Text className="text-slate-900 dark:text-white">Texto adaptable</Text>
+  <Text className="text-slate-900 dark:text-white">Adaptive text</Text>
 </View>
 ```
 
-### Con Tokens (Manual)
+### With Tokens (Manual)
 
-Para casos donde necesites valores dinámicos:
+For cases where you need dynamic values:
 
 ```typescript
 import { getColorByTheme } from '@common/presentation/theme/tokens';
@@ -234,7 +234,7 @@ function MyComponent() {
 }
 ```
 
-### Hook personalizado
+### Custom Hook
 
 ```typescript
 import { useColorScheme } from 'react-native';
@@ -255,15 +255,15 @@ export function useThemeColors() {
   };
 }
 
-// Uso:
+// Usage:
 const { background, textPrimary } = useThemeColors();
 ```
 
 ## 📱 Responsive Design
 
-Para diseño responsive en React Native, puedes usar:
+For responsive design in React Native, you can use:
 
-### Con Dimensions API
+### With Dimensions API
 
 ```typescript
 import { Dimensions, StyleSheet } from 'react-native';
@@ -273,11 +273,11 @@ const isSmall = width < 380;
 const isMedium = width >= 380 && width < 768;
 const isLarge = width >= 768;
 
-// Uso condicional
+// Conditional usage
 <View className={isSmall ? 'p-2' : 'p-4'} />;
 ```
 
-### Hook personalizado
+### Custom Hook
 
 ```typescript
 import { useState, useEffect } from 'react';
@@ -309,18 +309,18 @@ export function useBreakpoint(): Breakpoint {
   return breakpoint;
 }
 
-// Uso:
+// Usage:
 const breakpoint = useBreakpoint();
 <View className={breakpoint === 'xs' ? 'p-2' : 'p-4'} />;
 ```
 
-## 🎨 Componentes de Ejemplo
+## 🎨 Example Components
 
 ### Card Component
 
 ```tsx
 import { View, Text } from 'react-native';
-import { commonStyles } from '@/features/common/presentation/theme/tokens';
+import { commonStyles } from '@common/presentation/theme/tokens';
 
 export const Card = ({ children }) => {
   return (
@@ -349,14 +349,14 @@ export const Button = ({ title, onPress }) => {
 };
 ```
 
-## 🔧 Utilidades
+## 🔧 Utilities
 
 ### getShadow
 
-Obtiene una sombra predefinida:
+Gets a predefined shadow:
 
 ```typescript
-import { getShadow } from '@/features/common/presentation/theme/tokens';
+import { getShadow } from '@common/presentation/theme/tokens';
 
 const cardStyle = {
   ...getShadow('md'),
@@ -366,25 +366,25 @@ const cardStyle = {
 
 ### getSpacing
 
-Obtiene un valor de spacing como número:
+Gets a spacing value as a number:
 
 ```typescript
-import { getSpacing } from '@/features/common/presentation/theme/tokens';
+import { getSpacing } from '@common/presentation/theme/tokens';
 
 const margin = getSpacing('md'); // 16
 ```
 
-## 📚 Referencias
+## 📚 References
 
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
 - [NativeWind Docs](https://www.nativewind.dev/)
 - [Stitch Design System](https://stitch.design/)
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-Al agregar nuevos tokens o modificar existentes:
+When adding new tokens or modifying existing ones:
 
-1. Actualiza `src/main/theme.ts` con los nuevos valores
-2. Actualiza `tokens.ts` si es necesario
-3. Actualiza `tailwind.config.js` para reflejar los cambios
-4. Documenta los cambios en este README
+1. Update `src/main/theme.ts` with the new values
+2. Update `tokens.ts` if necessary
+3. Update `tailwind.config.js` to reflect the changes
+4. Document the changes in this README

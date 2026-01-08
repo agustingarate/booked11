@@ -1,11 +1,11 @@
 /**
  * useBreakpoint Hook
- * 
- * Hook personalizado que devuelve el breakpoint actual basado en el ancho de la pantalla.
- * Útil para crear layouts responsive en React Native.
+ *
+ * Custom hook that returns the current breakpoint based on screen width.
+ * Useful for creating responsive layouts in React Native.
  */
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Dimensions } from 'react-native';
 
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -38,7 +38,10 @@ export function useBreakpoint(): Breakpoint {
       setBreakpoint(getBreakpoint(width));
     };
 
-    const subscription = Dimensions.addEventListener('change', updateBreakpoint);
+    const subscription = Dimensions.addEventListener(
+      'change',
+      updateBreakpoint
+    );
     return () => subscription.remove();
   }, []);
 
@@ -46,7 +49,7 @@ export function useBreakpoint(): Breakpoint {
 }
 
 /**
- * Hook para obtener el ancho actual de la pantalla
+ * Hook to get the current screen width
  */
 export function useScreenWidth(): number {
   const [width, setWidth] = useState(() => Dimensions.get('window').width);
@@ -65,18 +68,18 @@ export function useScreenWidth(): number {
 }
 
 /**
- * Hook que devuelve valores booleanos para cada breakpoint
+ * Hook that returns boolean values for each breakpoint
  */
 export function useBreakpoints() {
   const breakpoint = useBreakpoint();
-  
+
   return {
     isXs: breakpoint === 'xs',
     isSm: breakpoint === 'sm',
     isMd: breakpoint === 'md',
     isLg: breakpoint === 'lg',
     isXl: breakpoint === 'xl',
-    // Helpers útiles
+    // Useful helpers
     isMobile: breakpoint === 'xs' || breakpoint === 'sm',
     isTablet: breakpoint === 'md',
     isDesktop: breakpoint === 'lg' || breakpoint === 'xl',
@@ -84,27 +87,27 @@ export function useBreakpoints() {
 }
 
 /**
- * Ejemplos de uso:
- * 
+ * Usage examples:
+ *
  * ```tsx
  * import { useBreakpoint, useBreakpoints } from '@common/hooks/useBreakpoint';
- * 
- * // Ejemplo 1: Con breakpoint string
+ *
+ * // Example 1: With breakpoint string
  * function MyComponent() {
  *   const breakpoint = useBreakpoint();
- *   
+ *
  *   return (
  *     <View className={breakpoint === 'xs' ? 'p-2' : 'p-4'}>
  *       <Text>Breakpoint: {breakpoint}</Text>
  *     </View>
  *   );
  * }
- * 
- * // Ejemplo 2: Con helpers booleanos
+ *
+ * // Example 2: With boolean helpers
  * function ResponsiveGrid() {
  *   const { isMobile, isTablet, isDesktop } = useBreakpoints();
  *   const columns = isMobile ? 1 : isTablet ? 2 : 3;
- *   
+ *
  *   return <FlatList numColumns={columns} />;
  * }
  * ```

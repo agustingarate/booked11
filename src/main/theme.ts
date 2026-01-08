@@ -1,12 +1,12 @@
 /**
  * Theme configuration for NativeWind/Tailwind CSS.
- * 
- * Este archivo define todos los tokens de diseño utilizados en la aplicación.
+ *
+ * This file defines all design tokens used throughout the application.
  */
 
 export const theme = {
   colors: {
-    // Primary - Azul principal de la app
+    // Primary - Main app blue
     primary: {
       DEFAULT: '#136dec',
       50: '#eff6ff',
@@ -14,19 +14,19 @@ export const theme = {
       200: '#bfdbfe',
       300: '#93c5fd',
       400: '#60a5fa',
-      500: '#136dec', // Color principal
+      500: '#136dec', // Main color
       600: '#1059c9',
       700: '#0d45a6',
       800: '#0a3483',
       900: '#072560',
     },
-    
+
     // Background colors
     background: {
       light: '#f6f7f8',
       dark: '#101822',
     },
-    
+
     // Surface colors (Cards, panels)
     surface: {
       light: '#ffffff',
@@ -37,13 +37,13 @@ export const theme = {
         alt: '#1C2530',
       },
     },
-    
+
     // Border colors
     border: {
       light: '#e5e7eb',
       dark: '#2A3645',
     },
-    
+
     // Text colors
     text: {
       primary: {
@@ -59,7 +59,7 @@ export const theme = {
         dark: '#64748b',
       },
     },
-    
+
     // Semantic colors
     success: {
       50: '#f0fdf4',
@@ -97,7 +97,7 @@ export const theme = {
       800: '#92400e',
       900: '#78350f',
     },
-    
+
     // Neutral/Gray scale
     gray: {
       50: '#f9fafb',
@@ -111,8 +111,8 @@ export const theme = {
       800: '#1f2937',
       900: '#111827',
     },
-    
-    // Slate scale (para textos y bordes)
+
+    // Slate scale (for text and borders)
     slate: {
       50: '#f8fafc',
       100: '#f1f5f9',
@@ -126,7 +126,7 @@ export const theme = {
       900: '#0f172a',
     },
   },
-  
+
   // Spacing scale
   spacing: {
     0: 0,
@@ -143,40 +143,40 @@ export const theme = {
     20: 80,
     24: 96,
   },
-  
-  // Border radius siguiendo Stitch
+
+  // Border radius following Stitch
   borderRadius: {
     none: 0,
-    sm: 4,        // 0.25rem - DEFAULT
-    DEFAULT: 4,   // 0.25rem
-    md: 8,        // 0.5rem
-    lg: 12,       // 0.75rem - lg
-    xl: 16,       // 1rem - 2xl
+    sm: 4, // 0.25rem - DEFAULT
+    DEFAULT: 4, // 0.25rem
+    md: 8, // 0.5rem
+    lg: 12, // 0.75rem - lg
+    xl: 16, // 1rem - 2xl
     '2xl': 16,
     '3xl': 24,
     full: 9999,
   },
-  
-  // Typography - Lexend como fuente principal
+
+  // Typography - Lexend as main font
   fontFamily: {
     display: ['Lexend', 'sans-serif'],
     body: ['Noto Sans', 'sans-serif'],
     sans: ['Lexend', 'sans-serif'],
   },
-  
+
   fontSize: {
-    xs: 10,     // 0.625rem
-    sm: 12,     // 0.75rem
-    base: 14,   // 0.875rem
-    lg: 16,     // 1rem
-    xl: 18,     // 1.125rem
-    '2xl': 20,  // 1.25rem
-    '3xl': 24,  // 1.5rem
-    '4xl': 28,  // 1.75rem
-    '5xl': 32,  // 2rem
-    '6xl': 36,  // 2.25rem
+    xs: 10, // 0.625rem
+    sm: 12, // 0.75rem
+    base: 14, // 0.875rem
+    lg: 16, // 1rem
+    xl: 18, // 1.125rem
+    '2xl': 20, // 1.25rem
+    '3xl': 24, // 1.5rem
+    '4xl': 28, // 1.75rem
+    '5xl': 32, // 2rem
+    '6xl': 36, // 2.25rem
   },
-  
+
   fontWeight: {
     light: '300',
     normal: '400',
@@ -185,23 +185,23 @@ export const theme = {
     bold: '700',
     extrabold: '800',
   },
-  
+
   lineHeight: {
     tight: 1.2,
     normal: 1.5,
     relaxed: 1.75,
   },
-  
+
   // Letter spacing (tracking)
   letterSpacing: {
-    tighter: -0.015,  // tracking-[-0.015em]
+    tighter: -0.015, // tracking-[-0.015em]
     tight: -0.01,
     normal: 0,
     wide: 0.025,
     wider: 0.05,
   },
-  
-  // Shadows para React Native
+
+  // Shadows for React Native
   shadows: {
     sm: {
       shadowColor: '#000',
@@ -238,7 +238,7 @@ export const theme = {
       shadowRadius: 24,
       elevation: 16,
     },
-    // Shadow específica para primary color
+    // Specific shadow for primary color
     primary: {
       shadowColor: '#136dec',
       shadowOffset: { width: 0, height: 4 },
@@ -247,7 +247,7 @@ export const theme = {
       elevation: 8,
     },
   },
-  
+
   // Opacity scale
   opacity: {
     0: 0,

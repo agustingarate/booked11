@@ -1,8 +1,8 @@
-# Ejemplos de Uso del Theme System
+# Theme System Usage Examples
 
-Esta guía contiene ejemplos prácticos de cómo usar el theme system en diferentes escenarios.
+This guide contains practical examples of how to use the theme system in different scenarios.
 
-## 📱 Componentes con StyleSheet
+## 📱 Components with StyleSheet
 
 ### Card Component
 
@@ -17,24 +17,35 @@ interface CardProps {
   isDark?: boolean;
 }
 
-export const Card: React.FC<CardProps> = ({ title, description, isDark = false }) => {
+export const Card: React.FC<CardProps> = ({
+  title,
+  description,
+  isDark = false,
+}) => {
   return (
-    <View style={[
-      styles.container,
-      { 
-        backgroundColor: isDark ? colors.surfaceCard : colors.surfaceLight,
-      }
-    ]}>
-      <Text style={[
-        styles.title,
-        { color: isDark ? colors.textPrimaryDark : colors.textPrimaryLight }
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: isDark ? colors.surfaceCard : colors.surfaceLight,
+        },
       ]}>
+      <Text
+        style={[
+          styles.title,
+          { color: isDark ? colors.textPrimaryDark : colors.textPrimaryLight },
+        ]}>
         {title}
       </Text>
-      <Text style={[
-        styles.description,
-        { color: isDark ? colors.textSecondaryDark : colors.textSecondaryLight }
-      ]}>
+      <Text
+        style={[
+          styles.description,
+          {
+            color: isDark
+              ? colors.textSecondaryDark
+              : colors.textSecondaryLight,
+          },
+        ]}>
         {description}
       </Text>
     </View>
@@ -59,14 +70,14 @@ const styles = StyleSheet.create({
 });
 ```
 
-## 🎨 Componentes con NativeWind
+## 🎨 Components with NativeWind
 
 ### Button Component
 
 ```tsx
 import React from 'react';
 import { TouchableOpacity, Text, ActivityIndicator } from 'react-native';
-import { cn } from '@common/utils'; // Función cn para combinar clases
+import { cn } from '@common/utils'; // cn function to combine classes
 
 interface ButtonProps {
   title: string;
@@ -83,14 +94,15 @@ export const Button: React.FC<ButtonProps> = ({
   isLoading = false,
   disabled = false,
 }) => {
-  const baseClasses = 'py-3 px-6 rounded-lg items-center justify-center active:scale-95';
-  
+  const baseClasses =
+    'py-3 px-6 rounded-lg items-center justify-center active:scale-95';
+
   const variantClasses = {
     primary: 'bg-primary',
     secondary: 'bg-surface-dark dark:bg-surface-light',
     outline: 'border-2 border-primary bg-transparent',
   };
-  
+
   const textClasses = {
     primary: 'text-white',
     secondary: 'text-white dark:text-slate-900',
@@ -102,13 +114,14 @@ export const Button: React.FC<ButtonProps> = ({
       className={cn(
         baseClasses,
         variantClasses[variant],
-        disabled && 'opacity-50',
+        disabled && 'opacity-50'
       )}
       onPress={onPress}
-      disabled={disabled || isLoading}
-    >
+      disabled={disabled || isLoading}>
       {isLoading ? (
-        <ActivityIndicator color={variant === 'primary' ? 'white' : undefined} />
+        <ActivityIndicator
+          color={variant === 'primary' ? 'white' : undefined}
+        />
       ) : (
         <Text className={cn('text-base font-bold', textClasses[variant])}>
           {title}
@@ -119,7 +132,7 @@ export const Button: React.FC<ButtonProps> = ({
 };
 ```
 
-### Document Card (Basado en Stitch)
+### Document Card (Based on Stitch)
 
 ```tsx
 import React from 'react';
@@ -148,25 +161,35 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
   return (
     <TouchableOpacity
       className="flex-row items-center p-3 gap-4 rounded-2xl bg-white dark:bg-surface-dark border border-transparent dark:border-slate-800 hover:border-primary/30 shadow-sm active:scale-[0.99]"
-      onPress={onPress}
-    >
+      onPress={onPress}>
       {/* Thumbnail */}
       <View className="relative shrink-0 h-16 w-16 rounded-lg bg-gray-100 dark:bg-slate-800 overflow-hidden">
         {thumbnail ? (
-          <Image source={{ uri: thumbnail }} className="w-full h-full opacity-80" />
+          <Image
+            source={{ uri: thumbnail }}
+            className="w-full h-full opacity-80"
+          />
         ) : (
           <View className="w-full h-full items-center justify-center">
-            <MaterialIcons name="picture-as-pdf" size={36} color="#94a3b8" />
+            <MaterialIcons
+              name="picture-as-pdf"
+              size={36}
+              color="#94a3b8"
+            />
           </View>
         )}
-        
+
         {hasAI && (
           <View className="absolute bottom-0 right-0 bg-purple-500 px-1 py-0.5 rounded-tl-md flex-row items-center gap-0.5">
-            <MaterialIcons name="auto-awesome" size={8} color="white" />
+            <MaterialIcons
+              name="auto-awesome"
+              size={8}
+              color="white"
+            />
             <Text className="text-white text-[8px] font-bold">AI</Text>
           </View>
         )}
-        
+
         {!hasAI && (
           <View className="absolute bottom-0 right-0 bg-red-500 px-1 py-0.5 rounded-tl-md">
             <Text className="text-white text-[8px] font-bold">PDF</Text>
@@ -176,20 +199,26 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
 
       {/* Info */}
       <View className="flex-1 min-w-0">
-        <Text className="text-base font-semibold text-slate-900 dark:text-white leading-tight mb-1" numberOfLines={1}>
+        <Text
+          className="text-base font-semibold text-slate-900 dark:text-white leading-tight mb-1"
+          numberOfLines={1}>
           {title}
         </Text>
         <View className="flex-row items-center gap-2">
-          <Text className="text-xs text-slate-500 dark:text-slate-400">{size}</Text>
+          <Text className="text-xs text-slate-500 dark:text-slate-400">
+            {size}
+          </Text>
           <View className="w-1 h-1 rounded-full bg-slate-400" />
-          <Text className="text-xs text-slate-500 dark:text-slate-400">{date}</Text>
+          <Text className="text-xs text-slate-500 dark:text-slate-400">
+            {date}
+          </Text>
         </View>
-        
+
         {progress !== undefined && (
           <View className="mt-2">
             <View className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-              <View 
-                className="h-full bg-primary rounded-full" 
+              <View
+                className="h-full bg-primary rounded-full"
                 style={{ width: `${progress}%` }}
               />
             </View>
@@ -199,14 +228,18 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
 
       {/* More Button */}
       <TouchableOpacity className="shrink-0 p-2 rounded-full">
-        <MaterialIcons name="more-vert" size={22} color="#94a3b8" />
+        <MaterialIcons
+          name="more-vert"
+          size={22}
+          color="#94a3b8"
+        />
       </TouchableOpacity>
     </TouchableOpacity>
   );
 };
 ```
 
-## 🎯 Componentes con Tokens + StyleSheet
+## 🎯 Components with Tokens + StyleSheet
 
 ### Screen Container
 
@@ -226,14 +259,17 @@ export const ScreenContainer: React.FC<ScreenContainerProps> = ({
 }) => {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
-  
+
   return (
-    <ScrollView 
+    <ScrollView
       style={[
         styles.container,
-        { backgroundColor: isDark ? colors.backgroundDark : colors.backgroundLight }
-      ]}
-    >
+        {
+          backgroundColor: isDark
+            ? colors.backgroundDark
+            : colors.backgroundLight,
+        },
+      ]}>
       <View style={[styles.content, withPadding && styles.withPadding]}>
         {children}
       </View>
@@ -267,7 +303,11 @@ interface CardGridProps<T> {
   keyExtractor: (item: T) => string;
 }
 
-export function CardGrid<T>({ data, renderItem, keyExtractor }: CardGridProps<T>) {
+export function CardGrid<T>({
+  data,
+  renderItem,
+  keyExtractor,
+}: CardGridProps<T>) {
   const { width } = Dimensions.get('window');
   const numColumns = width >= 768 ? 3 : 2;
 
@@ -275,13 +315,11 @@ export function CardGrid<T>({ data, renderItem, keyExtractor }: CardGridProps<T>
     <FlatList
       data={data}
       renderItem={({ item }) => (
-        <View style={styles.cardWrapper}>
-          {renderItem(item)}
-        </View>
+        <View style={styles.cardWrapper}>{renderItem(item)}</View>
       )}
       keyExtractor={keyExtractor}
       numColumns={numColumns}
-      key={numColumns} // Importante: cambia la key cuando cambia numColumns
+      key={numColumns} // Important: change key when numColumns changes
       columnWrapperStyle={styles.row}
       contentContainerStyle={styles.container}
     />
@@ -301,11 +339,11 @@ const styles = StyleSheet.create({
 });
 ```
 
-## 🌗 Dark Mode con NativeWind
+## 🌗 Dark Mode with NativeWind
 
 ### Theme Display
 
-Con NativeWind, el dark mode se maneja automáticamente según el sistema. Aquí un componente que muestra el estado actual:
+With NativeWind, dark mode is handled automatically based on the system. Here's a component that shows the current state:
 
 ```tsx
 import React from 'react';
@@ -318,22 +356,22 @@ export const ThemeIndicator: React.FC = () => {
 
   return (
     <View className="flex-row items-center gap-2 p-3 rounded-xl bg-surface-light dark:bg-surface-dark">
-      <MaterialIcons 
-        name={isDark ? 'dark-mode' : 'light-mode'} 
-        size={24} 
-        color={isDark ? '#fff' : '#0f172a'} 
+      <MaterialIcons
+        name={isDark ? 'dark-mode' : 'light-mode'}
+        size={24}
+        color={isDark ? '#fff' : '#0f172a'}
       />
       <Text className="text-base font-medium text-slate-900 dark:text-white">
-        {isDark ? 'Modo Oscuro' : 'Modo Claro'}
+        {isDark ? 'Dark Mode' : 'Light Mode'}
       </Text>
     </View>
   );
 };
 ```
 
-**Nota**: NativeWind detecta automáticamente el theme del sistema. No es necesario cambiarlo manualmente desde la app.
+**Note**: NativeWind automatically detects the system theme. It's not necessary to change it manually from the app.
 
-## 📄 PDF Reader Header (Basado en Stitch)
+## 📄 PDF Reader Header (Based on Stitch)
 
 ```tsx
 import React from 'react';
@@ -358,25 +396,29 @@ export const PDFHeader: React.FC<PDFHeaderProps> = ({
       <View className="flex-row items-center justify-between">
         <TouchableOpacity
           className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/10 active:scale-95"
-          onPress={onBack}
-        >
-          <MaterialIcons name="arrow-back-ios" size={20} color="white" />
+          onPress={onBack}>
+          <MaterialIcons
+            name="arrow-back-ios"
+            size={20}
+            color="white"
+          />
         </TouchableOpacity>
 
         <View className="flex-col items-center">
           <Text className="text-white text-base font-bold tracking-tight">
             {title}
           </Text>
-          <Text className="text-xs text-gray-400 font-normal">
-            {subtitle}
-          </Text>
+          <Text className="text-xs text-gray-400 font-normal">{subtitle}</Text>
         </View>
 
         <TouchableOpacity
           className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/10 active:scale-95"
-          onPress={onSearch}
-        >
-          <MaterialIcons name="search" size={24} color="white" />
+          onPress={onSearch}>
+          <MaterialIcons
+            name="search"
+            size={24}
+            color="white"
+          />
         </TouchableOpacity>
       </View>
     </View>
@@ -384,7 +426,7 @@ export const PDFHeader: React.FC<PDFHeaderProps> = ({
 };
 ```
 
-## 🎨 Bottom Navigation (Basado en Stitch)
+## 🎨 Bottom Navigation (Based on Stitch)
 
 ```tsx
 import React from 'react';
@@ -413,33 +455,33 @@ export const BottomNav: React.FC<BottomNavProps> = ({
       <View className="flex-row justify-around items-center h-16 px-2">
         {tabs.map((tab) => {
           const isActive = tab.id === activeTab;
-          
+
           return (
             <TouchableOpacity
               key={tab.id}
               className="flex flex-col items-center justify-center w-full gap-1"
-              onPress={() => onTabPress(tab.id)}
-            >
+              onPress={() => onTabPress(tab.id)}>
               {isActive ? (
                 <View className="bg-primary/10 px-4 py-1 rounded-full">
-                  <MaterialIcons 
-                    name={tab.icon as any} 
-                    size={24} 
+                  <MaterialIcons
+                    name={tab.icon as any}
+                    size={24}
                     color="#136dec"
                   />
                 </View>
               ) : (
-                <MaterialIcons 
-                  name={tab.icon as any} 
-                  size={24} 
+                <MaterialIcons
+                  name={tab.icon as any}
+                  size={24}
                   color="#94a3b8"
                 />
               )}
-              <Text className={`text-[10px] ${
-                isActive 
-                  ? 'font-bold text-primary' 
-                  : 'font-medium text-slate-400 dark:text-slate-500'
-              }`}>
+              <Text
+                className={`text-[10px] ${
+                  isActive
+                    ? 'font-bold text-primary'
+                    : 'font-medium text-slate-400 dark:text-slate-500'
+                }`}>
                 {tab.label}
               </Text>
             </TouchableOpacity>
@@ -450,43 +492,45 @@ export const BottomNav: React.FC<BottomNavProps> = ({
   );
 };
 
-// Uso:
+// Usage:
 // const tabs = [
-//   { id: 'library', icon: 'grid-view', label: 'Biblioteca' },
-//   { id: 'favorites', icon: 'favorite', label: 'Favoritos' },
-//   { id: 'ai', icon: 'smart-toy', label: 'Herramientas IA' },
-//   { id: 'settings', icon: 'settings', label: 'Ajustes' },
+//   { id: 'library', icon: 'grid-view', label: 'Library' },
+//   { id: 'favorites', icon: 'favorite', label: 'Favorites' },
+//   { id: 'ai', icon: 'smart-toy', label: 'AI Tools' },
+//   { id: 'settings', icon: 'settings', label: 'Settings' },
 // ];
 ```
 
-## 💡 Consejos
+## 💡 Tips
 
-### 1. Usar commonStyles para componentes rápidos
+### 1. Use commonStyles for quick components
 
 ```tsx
 import { View, TouchableOpacity } from 'react-native';
 import { commonStyles } from '@common/presentation/theme';
 
-// FAB rápido
+// Quick FAB
 <TouchableOpacity style={commonStyles.fab}>
   <Icon name="add" />
 </TouchableOpacity>
 
-// Card rápida
+// Quick Card
 <View style={commonStyles.card}>
   {/* content */}
 </View>
 ```
 
-### 2. Combinar NativeWind con estilos inline
+### 2. Combine NativeWind with inline styles
 
 ```tsx
-<View className="p-4 rounded-lg" style={{ backgroundColor: colors.primary }}>
-  <Text className="text-white font-bold">Combinación de estilos</Text>
+<View
+  className="p-4 rounded-lg"
+  style={{ backgroundColor: colors.primary }}>
+  <Text className="text-white font-bold">Style combination</Text>
 </View>
 ```
 
-### 3. Hooks útiles para theme
+### 3. Useful hooks for theme
 
 ```tsx
 import { useColorScheme } from 'react-native';
@@ -495,18 +539,18 @@ import { getColorByTheme } from '@common/presentation/theme';
 function MyComponent() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
-  
+
   const bgColor = getColorByTheme(
     isDark,
     colors.backgroundLight,
     colors.backgroundDark
   );
-  
+
   return <View style={{ backgroundColor: bgColor }} />;
 }
 ```
 
-### 4. Responsive con Dimensions
+### 4. Responsive with Dimensions
 
 ```tsx
 import { Dimensions, StyleSheet } from 'react-native';
@@ -514,10 +558,9 @@ import { spacing } from '@common/presentation/theme';
 
 function MyComponent() {
   const { width } = Dimensions.get('window');
-  
-  const containerWidth = width < 380 ? '100%' :
-                        width < 768 ? '90%' :
-                        width < 1024 ? '80%' : '70%';
+
+  const containerWidth =
+    width < 380 ? '100%' : width < 768 ? '90%' : width < 1024 ? '80%' : '70%';
 
   return (
     <View style={[styles.container, { width: containerWidth }]}>

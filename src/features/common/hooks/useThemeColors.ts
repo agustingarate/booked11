@@ -1,10 +1,10 @@
 /**
  * useThemeColors Hook
  *
- * Hook personalizado que proporciona acceso fácil a los colores del theme
- * según el modo (light/dark) detectado del sistema.
+ * Custom hook that provides easy access to theme colors
+ * based on the system's detected mode (light/dark).
  *
- * Útil para cuando necesitas valores de color dinámicos en estilos inline.
+ * Useful when you need dynamic color values in inline styles.
  */
 
 import { useColorScheme } from 'react-native';
@@ -31,7 +31,7 @@ export function useThemeColors() {
     // Borders
     border: isDark ? colors.borderDark : colors.borderLight,
 
-    // Semantic (no cambian)
+    // Semantic (don't change)
     primary: colors.primary,
     success: colors.success,
     error: colors.error,
@@ -44,7 +44,7 @@ export function useThemeColors() {
 }
 
 /**
- * Ejemplo de uso:
+ * Usage example:
  *
  * ```tsx
  * import { useThemeColors } from '@common/hooks/useThemeColors';

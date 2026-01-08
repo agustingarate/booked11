@@ -1,13 +1,13 @@
 /**
  * Theme exports
  * 
- * Punto central de exportación para todos los elementos del theme system.
+ * Central export point for all theme system elements.
  */
 
-// Theme base y tipos
+// Theme base and types
 export { theme, type Theme } from '@main/theme';
 
-// Tokens individuales para uso directo
+// Individual tokens for direct use
 export {
   colors,
   spacing,
