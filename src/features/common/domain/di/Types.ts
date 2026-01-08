@@ -1,0 +1,30 @@
+const $ = {
+  BaseURL: Symbol.for("BaseURL"),
+  S3BaseURL: Symbol.for("S3BaseURL"),
+  HttpClient: Symbol.for("HttpClient"),
+  S3FilesClient: Symbol.for("S3FilesClient"),
+  EventsApi: Symbol.for("EventsApi"),
+  EventsRepository: Symbol.for("EventsRepository"),
+  ScheduleApi: Symbol.for("ScheduleApi"),
+  ScheduleRepository: Symbol.for("ScheduleRepository"),
+  AreasApi: Symbol.for("AreasApi"),
+  AreasRepository: Symbol.for("AreasRepository"),
+  UsersApi: Symbol.for("UsersApi"),
+  UsersRepository: Symbol.for("UsersRepository"),
+  GetUserDataUseCase: Symbol.for("GetUserDataUseCase"),
+  ImagesApi: Symbol.for("ImagesApi"),
+  ImagesRepository: Symbol.for("ImagesRepository"),
+  UploadImageUseCase: Symbol.for("UploadImageUseCase"),
+  NotificationsApi: Symbol.for("NotificationsApi"),
+  NotificationsRepository: Symbol.for("NotificationsRepository"),
+  CommonNotificationsApi: Symbol.for("CommonNotificationsApi"),
+  CommonNotificationsRepository: Symbol.for("CommonNotificationsRepository"),
+  GetNumberOfUnreadNotificationsUseCase: Symbol.for(
+    "GetNumberOfUnreadNotificationsUseCase",
+  ),
+  CreditsApi: Symbol.for("CreditsApi"),
+  CreditsRepository: Symbol.for("CreditsRepository"),
+  GetBalanceUseCase: Symbol.for("GetBalanceUseCase"),
+};
+
+export { $ };

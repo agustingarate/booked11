@@ -1,0 +1,94 @@
+{
+    "cli": {
+      "version": ">= 12.4.1",
+      "appVersionSource": "remote"
+    },
+    "build": {
+      "base": {
+        "ios": {
+          "resourceClass": "m-medium",
+          "credentialsSource": "remote"
+        },
+        "android": {
+          "credentialsSource": "remote"
+        }
+      },
+      "development": {
+        "extends": "base",
+        "developmentClient": true,
+        "distribution": "internal",
+        "environment": "development",
+        "channel": "development",
+        "env": {
+          "EXPO_PUBLIC_RELEASE_CHANNEL": "development"
+        }
+      },
+      "development-uat": {
+        "environment": "development",
+        "channel": "development-uat",
+        "env": {
+          "EXPO_PUBLIC_RELEASE_CHANNEL": "development-uat"
+        }
+      },
+      "simulator": {
+        "extends": "development",
+        "ios": {
+          "simulator": true
+        },
+        "environment": "development"
+      },
+      "preview": {
+        "extends": "base",
+        "distribution": "internal",
+        "android": {
+          "buildType": "apk",
+          "image": "latest"
+        },
+        "ios": {
+          "image": "latest"
+        },
+        "environment": "preview",
+        "channel": "stg-preview",
+        "env": {
+          "EXPO_PUBLIC_RELEASE_CHANNEL": "stg-preview"
+        }
+      },
+      "uat-preview": {
+        "extends": "preview",
+        "channel": "uat-preview",
+        "env": {
+          "EXPO_PUBLIC_RELEASE_CHANNEL": "uat-preview"
+        }
+      },
+      "production-preview": {
+        "extends": "preview",
+        "channel": "production-preview",
+        "env": {
+          "EXPO_PUBLIC_RELEASE_CHANNEL": "production-preview"
+        }
+      },
+      "regression": {
+        "extends": "preview",
+        "android": {
+          "config": "regression.yml"
+        },
+        "ios": {
+          "simulator": true,
+          "config": "regression.yml"
+        }
+      },
+      "production": {
+        "extends": "base",
+        "autoIncrement": true,
+        "environment": "production",
+        "channel": "production",
+        "env": {
+          "EXPO_PUBLIC_RELEASE_CHANNEL": "production"
+        }
+      }
+    },
+    "submit": {
+      "production": {}
+    }
+  }
+  
