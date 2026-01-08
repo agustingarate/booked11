@@ -22,21 +22,19 @@ const getApiConfig = () => {
 
 module.exports = {
   expo: {
-    name: 'rn-layout',
-    slug: 'rn-layout',
+    name: 'booked11',
+    slug: 'booked11',
     version: '1.0.0',
     orientation: 'portrait',
     icon: './assets/images/icon.png',
-    scheme: 'rnlayout',
+    scheme: 'booked11',
     userInterfaceStyle: 'automatic',
-    newArchEnabled: true,
-    owner: '',
     runtimeVersion: {
       policy: 'appVersion',
     },
     ios: {
       supportsTablet: true,
-      bundleIdentifier: 'com.rnlayout.app',
+      bundleIdentifier: 'com.booked11.app',
       associatedDomains: [],
       appleTeamId: '',
       infoPlist: {
@@ -44,7 +42,7 @@ module.exports = {
       },
     },
     android: {
-      package: 'com.rnlayout.app',
+      package: 'com.booked11.app',
       adaptiveIcon: {
         backgroundColor: '#E6F4FE',
         foregroundImage: './assets/images/android-icon-foreground.png',
@@ -62,7 +60,7 @@ module.exports = {
     },
     extra: {
       eas: {
-        projectId: '',
+        projectId: 'aa0c0fb1-6405-4361-92b9-65e12b8f62a3',
       },
       apiConfig: getApiConfig(),
     },
