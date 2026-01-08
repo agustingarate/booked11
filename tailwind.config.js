@@ -22,7 +22,37 @@ module.exports = {
       },
 
       // Typography
-      fontFamily: theme.fontFamily,
+      fontFamily: {
+        // Mapeo de fuentes para React Native
+        // Lexend se usa para display y sans (fuente principal)
+        // Nota: En React Native, cuando usas fontWeight, necesitas usar el nombre exacto de la fuente
+        display: ['Lexend-Regular', ...theme.fontFamily.display],
+        sans: ['Lexend-Regular', ...theme.fontFamily.sans],
+        // Noto Sans se usa para body
+        body: ['NotoSans-Regular', ...theme.fontFamily.body],
+        // Fuentes específicas de Lexend con peso
+        'lexend-thin': ['Lexend-Thin'],
+        'lexend-light': ['Lexend-Light'],
+        'lexend-regular': ['Lexend-Regular'],
+        'lexend-medium': ['Lexend-Medium'],
+        'lexend-semibold': ['Lexend-SemiBold'],
+        'lexend-bold': ['Lexend-Bold'],
+        'lexend-extrabold': ['Lexend-ExtraBold'],
+        'lexend-black': ['Lexend-Black'],
+        // Alias para uso común
+        lexend: ['Lexend-Regular'],
+        // Fuentes específicas de Noto Sans con peso
+        'noto-thin': ['NotoSans-Thin'],
+        'noto-light': ['NotoSans-Light'],
+        'noto-regular': ['NotoSans-Regular'],
+        'noto-medium': ['NotoSans-Medium'],
+        'noto-semibold': ['NotoSans-SemiBold'],
+        'noto-bold': ['NotoSans-Bold'],
+        'noto-extrabold': ['NotoSans-ExtraBold'],
+        'noto-black': ['NotoSans-Black'],
+        // Alias para uso común
+        'noto-sans': ['NotoSans-Regular'],
+      },
       fontSize: theme.fontSize,
       fontWeight: theme.fontWeight,
       lineHeight: theme.lineHeight,
