@@ -16,5 +16,5 @@ export { useBreakpoint, useBreakpoints, useScreenWidth } from '@common/hooks/use
 export type { Breakpoint } from '@common/hooks/useBreakpoint';
 
 // Components
-export { Button, ButtonRadius } from '@common/presentation/components/molecules/Button';
-export type { ButtonProps, ButtonVariant } from '@common/presentation/components/molecules/Button';
+export { Button, ButtonRadius } from '@common/presentation/components/atoms/Button';
+export type { ButtonProps, ButtonVariant } from '@common/presentation/components/atoms/Button';
