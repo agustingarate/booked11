@@ -6,7 +6,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -15,11 +14,7 @@ import { useAuthStore } from '../../../domain/store/authStore';
 import { useLoginViewModel } from '../../viewModels/LoginViewModel';
 
 import { useI18n } from '@common/domain/hooks/i18n';
-import { Button, ButtonRadius } from '@common/index';
-
-// Constante reutilizable para el estilo de input
-const INPUT_CLASSES =
-  'h-14 border-[1px] border-[#ddd] outline-[2px] rounded-lg bg-white px-[16px] mb-4';
+import { TextInputField } from '@common/presentation/components/atoms/TextInputField';
 
 /**
  * LoginScreen component.
@@ -81,7 +76,7 @@ const LoginScreen: FC = () => {
 
   return (
     <KeyboardAvoidingView
-      className="flex-1 justify-center bg-[#f8f9fa]"
+      className="flex-1 justify-center bg-background-dark"
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <View
         className="p-10"
@@ -92,7 +87,38 @@ const LoginScreen: FC = () => {
           {t('loginScreen.title')}
         </Text>
 
-        <TextInput
+        <TextInputField
+          placeholder={t('loginScreen.emailPlaceholder')}
+          keyboardType="email-address"
+          value={email}
+          onChange={setEmail}
+          autoCapitalize="none"
+          autoCorrect={false}
+          errorMessage="Email is required"
+          enable={false}
+          readOnly
+        />
+
+        <TextInputField
+          placeholder={t('loginScreen.passwordPlaceholder')}
+          keyboardType="default"
+          value={password}
+          onChange={setPassword}
+          autoCapitalize="none"
+          autoCorrect={false}
+          isPassword
+        />
+
+        <TextInputField
+          placeholder={t('loginScreen.emailPlaceholder')}
+          keyboardType="email-address"
+          value={email}
+          onChange={setEmail}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+
+        {/* <TextInput
           className={INPUT_CLASSES}
           placeholder={t('loginScreen.emailPlaceholder')}
           placeholderTextColor="#aaa"
@@ -115,8 +141,8 @@ const LoginScreen: FC = () => {
           autoCorrect={false}
           textContentType="oneTimeCode"
           testID="loginScreen.password"
-        />
-        <Button
+        /> */}
+        {/* <Button
           text={t('loginScreen.login')}
           leftIcon="account-tree"
           onPress={handleLogin}
@@ -124,7 +150,7 @@ const LoginScreen: FC = () => {
           testID="loginScreen.login"
           variant="primary"
           radius={ButtonRadius.ROUNDED}
-        />
+        /> */}
         {/* <TouchableOpacity
           className="h-14 bg-blue-600 rounded-xl justify-center items-center"
           onPress={handleLogin}
