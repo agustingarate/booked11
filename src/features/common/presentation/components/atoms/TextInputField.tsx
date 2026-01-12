@@ -140,17 +140,6 @@ const TextInputField = forwardRef<TextInput, TextInputFieldProps>(
         return null;
       };
 
-      const inputStyle = tv({
-        base: 'flex-1 text-sm text-white h-full',
-        variants: {
-          enable: {
-            true: `${isError ? 'border-error-700' : isFocused ? 'border-blue-500' : `border-blue-400`}`,
-
-            false: 'border-error-700',
-          },
-        },
-      });
-
       const getBorderClasses = (): string => {
         if (isFocused) {
           return isError
@@ -164,14 +153,25 @@ const TextInputField = forwardRef<TextInput, TextInputFieldProps>(
       };
 
       const inputContainerStyle = tv({
-        base: 'h-14 flex-row items-center rounded-lg bg-surface-dark-alt px-4',
+        base: 'h-14 flex-row items-center rounded-lg bg-surface-dark px-4',
         variants: {
           multiline: {
             true: 'p-3',
           },
           enable: {
             true: getBorderClasses(),
-            false: 'border-bg-surface-dark bg-surface-dark-toolbar',
+            false: 'border-bg-surface-dark bg-surface-overlay',
+          },
+        },
+      });
+
+      const inputStyle = tv({
+        base: 'flex-1 typo-text-input text-white h-full',
+        variants: {
+          enable: {
+            true: `${isError ? 'border-error-700' : isFocused ? 'border-blue-500' : `border-blue-400`}`,
+
+            false: 'border-error-700',
           },
         },
       });
@@ -243,7 +243,7 @@ const TextInputField = forwardRef<TextInput, TextInputFieldProps>(
             <Text style={styles.errorMessage}>{errorMessage}</Text>
           )} */}
           {isError && errorMessage && enable && (
-            <Text className="text-sm text-red-500">{errorMessage}</Text>
+            <Text className="text-sm text-error-700">{errorMessage}</Text>
           )}
         </View>
       );
