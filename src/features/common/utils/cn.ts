@@ -1,9 +1,9 @@
 /**
  * cn (classnames) utility
- * 
+ *
  * Combines multiple Tailwind/NativeWind classes conditionally.
  * Similar to clsx or classnames but optimized for React Native.
- * 
+ *
  * @example
  * ```tsx
  * <View className={cn(
@@ -26,7 +26,7 @@ export function cn(...classes: ClassValue[]): string {
 
 /**
  * Variant of cn that also accepts conditional objects
- * 
+ *
  * @example
  * ```tsx
  * <View className={cnx(
@@ -38,7 +38,9 @@ export function cn(...classes: ClassValue[]): string {
  * )} />
  * ```
  */
-export function cnx(...classes: (ClassValue | Record<string, boolean>)[]): string {
+export function cnx(
+  ...classes: (ClassValue | Record<string, boolean>)[]
+): string {
   const result: string[] = [];
 
   for (const cls of classes) {

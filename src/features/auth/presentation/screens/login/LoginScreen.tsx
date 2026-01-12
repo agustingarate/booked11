@@ -5,8 +5,8 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -15,10 +15,8 @@ import { useAuthStore } from '../../../domain/store/authStore';
 import { useLoginViewModel } from '../../viewModels/LoginViewModel';
 
 import { useI18n } from '@common/domain/hooks/i18n';
-
-// Constante reutilizable para el estilo de input
-const INPUT_CLASSES =
-  'h-14 border-[1px] border-[#ddd] outline-[2px] rounded-lg bg-white px-[16px] mb-4';
+import { TextInputField } from '@common/presentation/components/atoms/TextInputField';
+import FileComponent from '@common/presentation/components/molecules/FileComponent';
 
 /**
  * LoginScreen component.
@@ -80,18 +78,74 @@ const LoginScreen: FC = () => {
 
   return (
     <KeyboardAvoidingView
-      className="flex-1 justify-center bg-[#f8f9fa]"
+      className="flex-1 justify-center bg-background-dark"
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <View
-        className="p-10"
+        className=""
         accessible={false}>
         <Text
           testID="loginScreen.title"
-          className="text-3xl font-bold text-blue-950 text-center mb-7">
+          className="text-title-lg text-primary-300 text-center mb-7">
           {t('loginScreen.title')}
         </Text>
+        {/* 
+        <LinearProgressBar
+          // progress={0.5}
+          progress={51}
+          // isLoading
+        /> */}
 
-        <TextInput
+        <ScrollView
+          horizontal
+          className="flex-row h-80 "
+          contentContainerStyle={{ gap: 10 }}>
+          <FileComponent
+            title="Design system para principiantes V2.0.pdf"
+            description="Hace 2 horas"
+            progress={{
+              numberProgress: 51,
+              semanticProgress: '51% completado',
+            }}
+          />
+          <FileComponent />
+          <FileComponent />
+          <FileComponent />
+          <FileComponent />
+          <FileComponent />
+        </ScrollView>
+
+        <TextInputField
+          placeholder={t('loginScreen.emailPlaceholder')}
+          keyboardType="email-address"
+          value={email}
+          onChange={setEmail}
+          autoCapitalize="none"
+          autoCorrect={false}
+          errorMessage="Email is required"
+          enable={false}
+          readOnly
+        />
+
+        <TextInputField
+          placeholder={t('loginScreen.passwordPlaceholder')}
+          keyboardType="default"
+          value={password}
+          onChange={setPassword}
+          autoCapitalize="none"
+          autoCorrect={false}
+          isPassword
+        />
+
+        <TextInputField
+          placeholder={t('loginScreen.emailPlaceholder')}
+          keyboardType="email-address"
+          value={email}
+          onChange={setEmail}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+
+        {/* <TextInput
           className={INPUT_CLASSES}
           placeholder={t('loginScreen.emailPlaceholder')}
           placeholderTextColor="#aaa"
@@ -114,8 +168,17 @@ const LoginScreen: FC = () => {
           autoCorrect={false}
           textContentType="oneTimeCode"
           testID="loginScreen.password"
-        />
-        <TouchableOpacity
+        /> */}
+        {/* <Button
+          text={t('loginScreen.login')}
+          leftIcon="account-tree"
+          onPress={handleLogin}
+          disabled={isLoading}
+          testID="loginScreen.login"
+          variant="primary"
+          radius={ButtonRadius.ROUNDED}
+        /> */}
+        {/* <TouchableOpacity
           className="h-14 bg-blue-600 rounded-xl justify-center items-center"
           onPress={handleLogin}
           disabled={isLoading}
@@ -123,7 +186,7 @@ const LoginScreen: FC = () => {
           <Text className="text-white text-lg font-bold">
             {t('loginScreen.login')}
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View className="mt-4 flex items-center">
           <TouchableOpacity
             onPress={() => router.push('/auth/register')}
