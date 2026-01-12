@@ -709,33 +709,38 @@ const MyComponent = () => {
 
 ---
 
-## 🎨 Estilos
+## 🎨 Estilos (Design System)
 
-El proyecto utiliza **NativeWind** (TailwindCSS para React Native) y **React Native Unistyles** para los estilos.
+- **NativeWind** + **Tailwind** con tokens centralizados en `src/main/theme.ts`.
+- Clases tipográficas semánticas sin `@apply` ni plugins web-only (`tailwind.typography.plugin.js`).
+- Usa fontFamily por peso (sin `font-weight` con fuentes custom).
 
-### NativeWind
+### Tokens Clave
+- Colores: `primary`, `secondary`, `success`, `warning`, `error`, `info`, `disabled`, `background`, `surface`, `text`, `border`.
+- Tipografía: familias `lexend-*` y `noto-*`, tamaños `xs..7xl`, line-height `tight|snug|normal|relaxed`, letterSpacing `tighter..wider`.
+- Layout: `spacing`, `borderRadius`, `shadows`, `opacity`.
 
-Usa clases de TailwindCSS directamente en los componentes:
+### Tipografía Reutilizable (className)
 
 ```tsx
-<View className="flex-1 bg-gray-50 p-4">
-  <Text className="text-2xl font-bold text-blue-600">Hola</Text>
+<View className="p-4 bg-surface-muted">
+  <Text className="text-display-2 text-primary-700">Título principal</Text>
+  <Text className="text-title-md text-text-secondary mt-2">Subtítulo</Text>
+  <Text className="text-body mt-3 text-text-primary">
+    Texto de cuerpo con tipografía Noto Sans.
+  </Text>
+  <Text className="text-label mt-4 text-text-muted">Etiqueta</Text>
+  <Pressable className="mt-6 bg-primary-500 rounded-lg px-4 py-3">
+    <Text className="text-button text-text-inverse">Acción</Text>
+  </Pressable>
 </View>
 ```
 
-### Unistyles
-
-Para estilos más complejos o temas:
-
-```typescript
-import { createStyleSheet, useStyles } from 'react-native-unistyles';
-
-const stylesheet = createStyleSheet((theme) => ({
-  container: {
-    backgroundColor: theme.colors.background,
-  },
-}));
-```
+Clases disponibles (principales):  
+`text-display-1|2`, `text-title-lg|md|sm`, `text-subtitle`,  
+`text-body-lg|text-body|text-body-sm|text-body-xs`,  
+`text-label-lg|text-label|text-label-sm`, `text-caption`, `text-overline`,  
+`text-button-lg|text-button|text-button-sm`, `text-lead`, `text-muted`, `text-inverse`, `text-code`, `text-code-lg`.
 
 ---
 
