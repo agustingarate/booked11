@@ -5,6 +5,7 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   Text,
   TouchableOpacity,
   View,
@@ -15,6 +16,7 @@ import { useLoginViewModel } from '../../viewModels/LoginViewModel';
 
 import { useI18n } from '@common/domain/hooks/i18n';
 import { TextInputField } from '@common/presentation/components/atoms/TextInputField';
+import FileComponent from '@common/presentation/components/molecules/FileComponent';
 
 /**
  * LoginScreen component.
@@ -79,13 +81,38 @@ const LoginScreen: FC = () => {
       className="flex-1 justify-center bg-background-dark"
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <View
-        className="p-10"
+        className=""
         accessible={false}>
         <Text
           testID="loginScreen.title"
-          className="text-3xl font-bold text-blue-950 text-center mb-7">
+          className="text-title-lg text-primary-300 text-center mb-7">
           {t('loginScreen.title')}
         </Text>
+        {/* 
+        <LinearProgressBar
+          // progress={0.5}
+          progress={51}
+          // isLoading
+        /> */}
+
+        <ScrollView
+          horizontal
+          className="flex-row h-80 "
+          contentContainerStyle={{ gap: 10 }}>
+          <FileComponent
+            title="Design system para principiantes V2.0.pdf"
+            description="Hace 2 horas"
+            progress={{
+              numberProgress: 51,
+              semanticProgress: '51% completado',
+            }}
+          />
+          <FileComponent />
+          <FileComponent />
+          <FileComponent />
+          <FileComponent />
+          <FileComponent />
+        </ScrollView>
 
         <TextInputField
           placeholder={t('loginScreen.emailPlaceholder')}
