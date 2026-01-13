@@ -15,5 +15,5 @@ export default function AuthLayout() {
     return <Redirect href="/(protected)/(tabs)/home" />;
   }
 
-  return <Stack />;
+  return <Stack screenOptions={{ headerShown: false }} />;
 }

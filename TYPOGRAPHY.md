@@ -19,22 +19,26 @@ Clases semánticas listas para usar en `className`, sin `@apply` y sin props web
 ## Clases Disponibles
 
 ### Display
+
 - `text-display-1` (Lexend Black, 48px)
 - `text-display-2` (Lexend Bold, 40px)
 
 ### Titles
+
 - `text-title-lg` (Lexend Bold, 32px)
 - `text-title-md` (Lexend SemiBold, 28px)
 - `text-title-sm` (Lexend SemiBold, 24px)
 - `text-subtitle` (Lexend Medium, 20px)
 
 ### Body
+
 - `text-body-lg` (Noto Sans Regular, 18px)
 - `text-body` (Noto Sans Regular, 16px)
 - `text-body-sm` (Noto Sans Regular, 14px)
 - `text-body-xs` (Noto Sans Regular, 12px)
 
 ### Labels & Captions
+
 - `text-label-lg` (Noto Sans Medium, 18px)
 - `text-label` (Noto Sans Medium, 14px)
 - `text-label-sm` (Noto Sans Medium, 12px)
@@ -42,11 +46,13 @@ Clases semánticas listas para usar en `className`, sin `@apply` y sin props web
 - `text-overline` (Noto Sans SemiBold, 12px, uppercase)
 
 ### Botones
+
 - `text-button-lg` (Lexend SemiBold, 18px)
 - `text-button` (Lexend SemiBold, 16px)
 - `text-button-sm` (Lexend Medium, 14px)
 
 ### Especiales
+
 - `text-lead` (Noto Sans Medium, 20px)
 - `text-muted` (Noto Sans Regular, 14px, color muted)
 - `text-inverse` (Lexend SemiBold, 16px, color inverse)
@@ -68,10 +74,11 @@ Clases semánticas listas para usar en `className`, sin `@apply` y sin props web
   import { cn } from '@common';
   <Text className={cn('text-title-sm', disabled && 'text-disabled-foreground')}>
     Texto
-  </Text>
+  </Text>;
   ```
 
 ## Dónde se Definen
+
 - Clases: `tailwind.typography.plugin.js`
 - Tokens: `src/main/theme.ts`
 

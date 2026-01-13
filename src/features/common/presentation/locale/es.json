@@ -92,8 +92,11 @@
     },
     "loginScreen": {
       "appbar": "Iniciar sesión",
-      "title": "¡Te damos la bienvenida!",
+      "title": "Booked11",
+      "subtitle": "Tus documentos, en todas partes",
+      "description": "Inicia sesión para cargar y sincronizar tus documentos. Puedes acceder a ellos desde cualquier dispositivo compatible y ademas nunca perderas tu progreso de lectura.",
       "login": "Ingresar",
+      "googleSignIn": "Continuar con Google",
       "signup": "Registrarse",
       "notAccountText": "¿No tenés cuenta?",
       "signupAction": "Registrate",

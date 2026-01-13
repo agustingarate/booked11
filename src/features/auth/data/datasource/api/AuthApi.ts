@@ -25,7 +25,7 @@ class AuthApiImpl implements AuthApi {
     // return response.data ?? {};
     return Promise.resolve({
       user: {
-        id: 1,
+        id: '1',
         email: 'test@test.com',
         firstName: 'Test',
         lastName: 'Test',
