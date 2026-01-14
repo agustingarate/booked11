@@ -111,6 +111,11 @@
         "message": "Please enter both email and password."
       }
     },
+    "pdfViewer": {
+      "updateProgress": "Actualizar progreso",
+      "reinitializeProgress": "Reiniciar progreso"
+
+    },
     "rootScreen": {
       "home": "Home",
       "profile": "Perfil",
