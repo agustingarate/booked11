@@ -1,7 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+import { universalStorage } from '@common/utils/storage';
 import type { LoginResponse } from '@features/auth/data/models/LoginResponse';
 
 /**
@@ -93,7 +93,7 @@ export const useAuthStore = create<AuthState & AuthActions>()(
     }),
     {
       name: 'auth-storage', // Clave de almacenamiento
-      storage: createJSONStorage(() => AsyncStorage),
+      storage: createJSONStorage(() => universalStorage),
       // Solo persistir estos campos
       partialize: (state) => ({
         token: state.token,
