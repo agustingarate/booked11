@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { ViewStyle } from 'react-native';
 import { View } from 'react-native';
 import Animated, {
@@ -6,38 +6,17 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
-  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 
 import { cn } from '@common/utils/cn';
 
 export interface LinearProgressBarProps {
-  /**
-   * Progreso del indicador. Puede ser un número entre 0-1 o 0-100.
-   * Se normaliza automáticamente.
-   */
   progress?: number;
-  /**
-   * Si es true, muestra una animación de carga indefinida.
-   * Tiene prioridad sobre el prop progress.
-   */
   isLoading?: boolean;
-  /**
-   * Clase personalizada para el contenedor base (track)
-   */
   className?: string;
-  /**
-   * Clase personalizada para la barra de progreso
-   */
   progressClassName?: string;
-  /**
-   * Estilo personalizado para el contenedor base (track)
-   */
   style?: ViewStyle;
-  /**
-   * Estilo personalizado para la barra de progreso
-   */
   progressStyle?: ViewStyle;
 }
 
@@ -49,16 +28,15 @@ const LinearProgressBar: React.FC<LinearProgressBarProps> = ({
   style,
   progressStyle,
 }) => {
-  const progressValue = useSharedValue(0);
-  const indeterminatePosition = useSharedValue(0);
-
   // Normalizar progreso (soporta 0-1 y 0-100)
   const normalizedProgress = progress > 1 ? progress / 100 : progress;
   const clampedProgress = Math.max(0, Math.min(1, normalizedProgress));
 
+  const [currentProgress, setCurrentProgress] = useState(0);
+  const indeterminatePosition = useSharedValue(0);
+
   useEffect(() => {
     if (isLoading) {
-      // Animación indefinida: la barra se mueve de izquierda a derecha
       indeterminatePosition.value = withRepeat(
         withTiming(1, {
           duration: 1500,
@@ -68,30 +46,21 @@ const LinearProgressBar: React.FC<LinearProgressBarProps> = ({
         false
       );
     } else {
-      // Animación de progreso determinado
-      progressValue.value = withSpring(clampedProgress, {
-        damping: 15,
-        stiffness: 100,
-      });
+      setCurrentProgress(clampedProgress);
     }
-  }, [isLoading, clampedProgress, indeterminatePosition, progressValue]);
+  }, [isLoading, clampedProgress, indeterminatePosition]);
 
   const progressAnimatedStyle = useAnimatedStyle(() => {
     if (isLoading) {
-      // Para la animación indefinida, la barra tiene un ancho fijo y se mueve
-      const width = 0.3; // 30% del ancho total
+      const width = 0.3;
       const translateX = indeterminatePosition.value * (1 + width);
 
       return {
         width: `${width * 100}%`,
-        transform: [{ translateX: (translateX - width) * 100 * 3.33 }], // Multiplicar para compensar el porcentaje
-      };
-    } else {
-      // Para progreso determinado, el ancho crece
-      return {
-        width: `${progressValue.value * 100}%`,
+        transform: [{ translateX: (translateX - width) * 100 * 3.33 }],
       };
     }
+    return {};
   });
 
   return (
@@ -101,10 +70,20 @@ const LinearProgressBar: React.FC<LinearProgressBarProps> = ({
         className
       )}
       style={style}>
-      <Animated.View
-        className={cn('h-full bg-primary rounded-full', progressClassName)}
-        style={[progressStyle, progressAnimatedStyle]}
-      />
+      {isLoading ? (
+        <Animated.View
+          className={cn('h-full bg-primary rounded-full', progressClassName)}
+          style={[progressStyle, progressAnimatedStyle]}
+        />
+      ) : (
+        <View
+          className={cn(
+            'h-full bg-primary rounded-full transition-all duration-300 origin-left',
+            progressClassName
+          )}
+          style={[progressStyle, { width: `${currentProgress * 100}%` }]}
+        />
+      )}
     </View>
   );
 };

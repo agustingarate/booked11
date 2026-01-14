@@ -1,6 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import type { FC } from 'react';
-import { Text, View } from 'react-native';
+import type { DimensionValue } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 import FileThumbnail from '../atoms/FileThumbnail';
 import LinearProgressBar from '../atoms/LinearProgressBar';
@@ -14,26 +15,34 @@ interface FileComponentProps {
     numberProgress: number;
     semanticProgress: string;
   };
+  onPress?: () => void;
+  width?: DimensionValue;
 }
 
 const FileComponent: FC<FileComponentProps> = ({
   title,
   description,
   progress,
+  onPress,
+  width,
 }) => {
-  return (
-    <View className="w-40 gap-2">
+  const containerStyle = width ? { width } : undefined;
+
+  const content = (
+    <>
       <View className="bg-gray-200 p-6 rounded-lg h-60 relative">
         <FileThumbnail />
-        <View className="absolute bottom-0 left-0 right-0 p-2 z-50 gap-1">
-          <LinearProgressBar
-            progress={progress?.numberProgress}
-            className="h-1"
-          />
-          <Text className="typo-label-sm  text-primary-50">
-            {progress?.semanticProgress}
-          </Text>
-        </View>
+        {progress && (
+          <View className="absolute bottom-0 left-0 right-0 p-2 z-50 gap-1">
+            <LinearProgressBar
+              progress={progress.numberProgress}
+              className="h-1"
+            />
+            <Text className="typo-label-sm text-primary-50">
+              {progress.semanticProgress}
+            </Text>
+          </View>
+        )}
         <LinearGradient
           colors={[theme.colors.primary[50], theme.colors.primary[900]]}
           style={{
@@ -49,7 +58,7 @@ const FileComponent: FC<FileComponentProps> = ({
         />
       </View>
 
-      <View className="">
+      <View>
         <Text
           numberOfLines={2}
           className="typo-overline text-primary-50">
@@ -61,7 +70,16 @@ const FileComponent: FC<FileComponentProps> = ({
           {description}
         </Text>
       </View>
-    </View>
+    </>
+  );
+
+  return (
+    <Pressable
+      onPress={onPress}
+      className="gap-2 active:opacity-80"
+      style={containerStyle}>
+      {content}
+    </Pressable>
   );
 };
 
