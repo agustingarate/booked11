@@ -18,7 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [UNRELEASED]
 
 ### Added
-
+- Home Screen
 - PDF Viewer
 - Project setup
 - Firebase setup
