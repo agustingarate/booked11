@@ -768,6 +768,57 @@ feature/
 
 ---
 
+## 🌐 Compatibilidad Web
+
+Este proyecto ahora es compatible con **Web**, **iOS** y **Android**. La aplicación se adapta automáticamente a cada plataforma.
+
+### Ejecutar en Web
+
+```bash
+# Iniciar el servidor de desarrollo
+pnpm expo start
+
+# Presiona 'w' para abrir en el navegador
+# O visita: http://localhost:8081
+```
+
+### Configuración Adicional para Web
+
+Para que todas las funcionalidades trabajen correctamente en web (especialmente Google Sign-In), necesitas completar algunos pasos adicionales:
+
+1. **Configurar Web Client ID para Google OAuth**
+   - Ver guía completa en [`WEB_SETUP.md`](./WEB_SETUP.md)
+
+2. **Diferencias por Plataforma**
+   - **Persistencia**: Web usa `localStorage`, mobile usa `AsyncStorage`
+   - **Auth**: Configuración automática según la plataforma
+   - **UI**: Los tabs y navegación se adaptan automáticamente
+
+### Documentación Web
+
+- [`WEB_SETUP.md`](./WEB_SETUP.md) - Guía completa de configuración para web
+- [`CHANGELOG_WEB.md`](./CHANGELOG_WEB.md) - Cambios realizados para compatibilidad web
+
+### Características Web
+
+✅ Firebase Auth con persistencia en navegador
+✅ Zustand stores con localStorage
+✅ Sistema de tabs responsive
+✅ Google Sign-In (requiere configuración)
+✅ Navegación con Expo Router
+✅ Todos los componentes adaptados
+
+### Troubleshooting Web
+
+Si encuentras problemas en web:
+
+1. **Pantalla en blanco**: Verifica la consola del navegador para errores
+2. **Google Sign-In no funciona**: Configura el Web Client ID (ver `WEB_SETUP.md`)
+3. **Datos no persisten**: Verifica localStorage en DevTools → Application
+4. **Errores de AsyncStorage**: Asegúrate de que el storage universal está configurado
+
+---
+
 ## 🐛 Debugging
 
 ### React Native Debugger
@@ -781,6 +832,12 @@ Utiliza `console.log` para debugging. En producción, considera usar una librer�
 ---
 
 ## 📚 Recursos Adicionales
+
+### Documentación del Proyecto
+
+- [Sistema de Tema](./THEME_README.md) - Guía completa del sistema de diseño y tokens
+- [Tipografía](./TYPOGRAPHY.md) - Estilos y clases de tipografía disponibles
+- [Diseño Responsive](./RESPONSIVE_DESIGN.md) - Herramientas y mejores prácticas para diseño responsive
 
 ### Documentación Oficial
 

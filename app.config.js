@@ -39,6 +39,15 @@ module.exports = {
       appleTeamId: '',
       infoPlist: {
         ITSAppUsesNonExemptEncryption: false,
+        CFBundleURLTypes: [
+          {
+            CFBundleURLSchemes: [
+              'booked11',
+              // Reversed iOS Client ID para Google Sign-In
+              'com.googleusercontent.apps.702484602442-i8alo0o5fv9dtem02dhpio54s56mntoa',
+            ],
+          },
+        ],
       },
     },
     android: {

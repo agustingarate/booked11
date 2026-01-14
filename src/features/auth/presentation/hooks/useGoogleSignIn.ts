@@ -2,6 +2,7 @@ import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import { GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
 import { useEffect, useState } from 'react';
+import { Platform } from 'react-native';
 
 import { auth } from '../../../../../firebase_config_stg';
 
@@ -9,24 +10,36 @@ import type { LoginResponse } from '@features/auth/data/models/LoginResponse';
 
 WebBrowser.maybeCompleteAuthSession();
 
+// Ver WEB_SETUP.md para instrucciones
+const WEB_CLIENT_ID =
+  '702484602442-3gdtkqh43b2f6dv2tdnqb6d8f9mmcbml.apps.googleusercontent.com';
+
+const IOS_CLIENT_ID =
+  '702484602442-i8alo0o5fv9dtem02dhpio54s56mntoa.apps.googleusercontent.com';
+
 export const useGoogleSignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<LoginResponse | null>(null);
 
   // Configurar el request de Google OAuth
-  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    iosClientId:
-      '702484602442-i8alo0o5fv9dtem02dhpio54s56mntoa.apps.googleusercontent.com',
-    // Para Android (cuando lo necesites):
-    // androidClientId: 'TU-ANDROID-CLIENT-ID.apps.googleusercontent.com',
-  });
+
+  const [request, response, promptAsync] = Google.useIdTokenAuthRequest(
+    Platform.OS === 'web'
+      ? {
+          clientId: WEB_CLIENT_ID,
+          scopes: ['openid', 'profile', 'email'],
+        }
+      : {
+          // Configuración para iOS/Android
+          iosClientId: IOS_CLIENT_ID,
+        }
+  );
 
   useEffect(() => {
     if (!response) return;
 
     const handleResponse = async () => {
-      // Resetear estados
       setError(null);
       setData(null);
 
@@ -34,7 +47,8 @@ export const useGoogleSignIn = () => {
       if (response.type === 'success') {
         setIsLoading(true);
         try {
-          const idToken = response.authentication?.idToken;
+          const idToken =
+            response.authentication?.idToken ?? response.params.id_token;
 
           if (!idToken) {
             throw new Error('No se pudo obtener el ID token de Google');
@@ -83,6 +97,7 @@ export const useGoogleSignIn = () => {
   const signIn = async () => {
     setError(null);
     setData(null);
+
     await promptAsync();
   };
 

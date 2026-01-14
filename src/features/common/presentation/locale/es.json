@@ -111,6 +111,10 @@
         "message": "Please enter both email and password."
       }
     },
+    "homeScreen": {
+      "myLibrary": "Mi Biblioteca",
+      "exploreAndContinue": "Explora y continúa con tus lecturas"
+    },
     "pdfViewer": {
       "updateProgress": "Actualizar progreso",
       "reinitializeProgress": "Reiniciar progreso"

@@ -1,10 +1,3 @@
-/**
- * useBreakpoint Hook
- *
- * Custom hook that returns the current breakpoint based on screen width.
- * Useful for creating responsive layouts in React Native.
- */
-
 import { useEffect, useState } from 'react';
 import { Dimensions } from 'react-native';
 
@@ -48,9 +41,6 @@ export function useBreakpoint(): Breakpoint {
   return breakpoint;
 }
 
-/**
- * Hook to get the current screen width
- */
 export function useScreenWidth(): number {
   const [width, setWidth] = useState(() => Dimensions.get('window').width);
 
@@ -67,9 +57,6 @@ export function useScreenWidth(): number {
   return width;
 }
 
-/**
- * Hook that returns boolean values for each breakpoint
- */
 export function useBreakpoints() {
   const breakpoint = useBreakpoint();
 
@@ -79,18 +66,37 @@ export function useBreakpoints() {
     isMd: breakpoint === 'md',
     isLg: breakpoint === 'lg',
     isXl: breakpoint === 'xl',
-    // Useful helpers
     isMobile: breakpoint === 'xs' || breakpoint === 'sm',
     isTablet: breakpoint === 'md',
     isDesktop: breakpoint === 'lg' || breakpoint === 'xl',
   };
 }
 
+export function useBreakpointValue<T>(
+  values: Partial<Record<Breakpoint, T>>
+): T | undefined {
+  const breakpoint = useBreakpoint();
+
+  // Orden de prioridad: breakpoint actual -> breakpoints menores
+  const breakpointOrder: Breakpoint[] = ['xl', 'lg', 'md', 'sm', 'xs'];
+  const currentIndex = breakpointOrder.indexOf(breakpoint);
+
+  // Buscar el valor más cercano empezando desde el breakpoint actual
+  for (let i = currentIndex; i < breakpointOrder.length; i++) {
+    const bp = breakpointOrder[i];
+    if (values[bp] !== undefined) {
+      return values[bp];
+    }
+  }
+
+  return undefined;
+}
+
 /**
  * Usage examples:
  *
  * ```tsx
- * import { useBreakpoint, useBreakpoints } from '@common/hooks/useBreakpoint';
+ * import { useBreakpoint, useBreakpoints, useBreakpointValue } from '@common/hooks/useBreakpoint';
  *
  * // Example 1: With breakpoint string
  * function MyComponent() {
@@ -109,6 +115,14 @@ export function useBreakpoints() {
  *   const columns = isMobile ? 1 : isTablet ? 2 : 3;
  *
  *   return <FlatList numColumns={columns} />;
+ * }
+ *
+ * // Example 3: With breakpoint value selector
+ * function AdaptiveComponent() {
+ *   const padding = useBreakpointValue({ xs: 16, md: 24, lg: 32 });
+ *   const columns = useBreakpointValue({ xs: 2, md: 3, lg: 4 });
+ *
+ *   return <View style={{ padding }}>...</View>;
  * }
  * ```
  */
