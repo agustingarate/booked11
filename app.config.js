@@ -66,6 +66,8 @@ module.exports = {
     },
     plugins: [
       'expo-router',
+      ['@config-plugins/react-native-blob-util'],
+      ['@config-plugins/react-native-pdf'],
       ['expo-font'],
       [
         'expo-splash-screen',

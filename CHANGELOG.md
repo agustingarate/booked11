@@ -19,6 +19,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- PDF Viewer
 - Project setup
 - Firebase setup
 - Login with google auth
