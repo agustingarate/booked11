@@ -2,6 +2,7 @@ import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
+import { Platform } from 'react-native';
 
 import { ResolverProvider } from '@common/domain/hooks/Resolver';
 import '@common/presentation/i18n';
@@ -11,7 +12,9 @@ import { useAuthStore } from '@main/domain/store';
 import '../../global.css';
 
 // Mantiene el splash screen visible hasta que lo ocultemos manualmente
-void SplashScreen.preventAutoHideAsync();
+if (Platform.OS !== 'web') {
+  void SplashScreen.preventAutoHideAsync();
+}
 
 /**
  * Root layout component that wraps the entire application with necessary providers.
@@ -38,9 +41,8 @@ export default function RootLayout() {
     'Lexend-Bold': require('../../assets/fonts/Lexend-Bold.ttf'),
     'Lexend-ExtraBold': require('../../assets/fonts/Lexend-ExtraBold.ttf'),
     'Lexend-Black': require('../../assets/fonts/Lexend-Black.ttf'),
-    
+
     // Noto Sans - Fuente para body
-    'NotoSans-Thin': require('../../assets/fonts/NotoSans-Thin.ttf'),
     'NotoSans-ExtraLight': require('../../assets/fonts/NotoSans-ExtraLight.ttf'),
     'NotoSans-Light': require('../../assets/fonts/NotoSans-Light.ttf'),
     'NotoSans-Regular': require('../../assets/fonts/NotoSans-Regular.ttf'),
@@ -55,13 +57,10 @@ export default function RootLayout() {
     // Register all dependencies when the app starts
     registerDependencies();
 
-    // Espera a que el store de auth se hidrate desde AsyncStorage
-    // Esto es necesario porque Zustand con persistencia carga los datos de forma asíncrona
     const unsubscribe = useAuthStore.persist.onFinishHydration(() => {
       setIsHydrated(true);
     });
 
-    // Si ya está hidratado (por ejemplo, en recargas rápidas), marca como listo
     if (useAuthStore.persist.hasHydrated()) {
       setIsHydrated(true);
     }
@@ -69,14 +68,13 @@ export default function RootLayout() {
     return unsubscribe;
   }, []);
 
-  // Oculta el splash screen una vez que el store esté hidratado
   useEffect(() => {
-    if (isHydrated && (loaded || error)) {
+    if (isHydrated && (loaded || error) && Platform.OS !== 'web') {
       void SplashScreen.hideAsync();
     }
   }, [isHydrated, loaded, error]);
 
-  if (!loaded && !error) {
+  if (!isHydrated || (!loaded && !error)) {
     return null;
   }
 
