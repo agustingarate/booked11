@@ -1,0 +1,52 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Reglas para la colección de PDFs de usuarios
+    match /users/{userId}/pdfs/{pdfId} {
+      // Solo el usuario autenticado puede leer sus propios PDFs
+      allow read: if request.auth != null && request.auth.uid == userId;
+      
+      // Solo el usuario autenticado puede crear PDFs en su propia colección
+      allow create: if request.auth != null 
+                    && request.auth.uid == userId
+                    && request.resource.data.userId == userId
+                    && request.resource.data.keys().hasAll([
+                      'userId', 
+                      'fileName', 
+                      'url', 
+                      'totalPages', 
+                      'currentPage', 
+                      'progress', 
+                      'fileSize', 
+                      'uploadedAt', 
+                      'updatedAt'
+                    ])
+                    && request.resource.data.totalPages > 0
+                    && request.resource.data.currentPage >= 0
+                    && request.resource.data.progress >= 0 
+                    && request.resource.data.progress <= 100
+                    && request.resource.data.fileSize > 0;
+      
+      // Solo el usuario autenticado puede actualizar sus propios PDFs
+      // Solo se permiten actualizaciones de currentPage, progress y updatedAt
+      allow update: if request.auth != null 
+                    && request.auth.uid == userId
+                    && request.resource.data.userId == resource.data.userId
+                    && request.resource.data.diff(resource.data).affectedKeys()
+                      .hasOnly(['currentPage', 'progress', 'updatedAt'])
+                    && request.resource.data.currentPage >= 0
+                    && request.resource.data.progress >= 0 
+                    && request.resource.data.progress <= 100;
+      
+      // Solo el usuario autenticado puede eliminar sus propios PDFs
+      allow delete: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Denegar acceso a cualquier otra ruta no especificada
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,6 +1,15 @@
+import { FirebasePdfApiImpl } from '@common/data/datasource/firebase/FirebasePdfApi';
 import { AxiosHttpClient } from '@common/data/http/HttpClient';
+import { PdfRepositoryImpl } from '@common/data/repository/PdfRepository';
+import type { PdfApi } from '@common/data/datasource/api/PdfApi';
+import type PdfRepository from '@common/domain/repository/PdfRepository';
 import type { HttpClient } from '@common/domain/interfaces/HttpClient';
 import type { Resolver } from '@common/domain/interfaces/Resolver';
+import { DeletePdfUseCase } from '@common/domain/usecases/DeletePdfUseCase';
+import { GetPdfUseCase } from '@common/domain/usecases/GetPdfUseCase';
+import { ListPdfsUseCase } from '@common/domain/usecases/ListPdfsUseCase';
+import { UpdatePdfProgressUseCase } from '@common/domain/usecases/UpdatePdfProgressUseCase';
+import { UploadPdfUseCase } from '@common/domain/usecases/UploadPdfUseCase';
 
 import { $ } from '@common/domain/di/Types';
 import { useAuthStore } from '@features/auth/domain/store/authStore';
@@ -123,6 +132,39 @@ const CommonRegister = (resolver: Resolver): void => {
   //   $.GetBalanceUseCase,
   //   new GetBalanceUseCase(resolver.resolve($.CreditsRepository))
   // );
+
+  // PDF Management
+  resolver.registerSingleton<PdfApi>($.PdfApi, new FirebasePdfApiImpl());
+
+  resolver.registerSingleton<PdfRepository>(
+    $.PdfRepository,
+    new PdfRepositoryImpl(resolver.resolve($.PdfApi))
+  );
+
+  resolver.registerFactory<UploadPdfUseCase>(
+    $.UploadPdfUseCase,
+    () => new UploadPdfUseCase(resolver.resolve($.PdfRepository))
+  );
+
+  resolver.registerFactory<ListPdfsUseCase>(
+    $.ListPdfsUseCase,
+    () => new ListPdfsUseCase(resolver.resolve($.PdfRepository))
+  );
+
+  resolver.registerFactory<GetPdfUseCase>(
+    $.GetPdfUseCase,
+    () => new GetPdfUseCase(resolver.resolve($.PdfRepository))
+  );
+
+  resolver.registerFactory<UpdatePdfProgressUseCase>(
+    $.UpdatePdfProgressUseCase,
+    () => new UpdatePdfProgressUseCase(resolver.resolve($.PdfRepository))
+  );
+
+  resolver.registerFactory<DeletePdfUseCase>(
+    $.DeletePdfUseCase,
+    () => new DeletePdfUseCase(resolver.resolve($.PdfRepository))
+  );
 };
 
 export { CommonRegister };

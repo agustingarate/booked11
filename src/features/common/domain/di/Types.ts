@@ -25,6 +25,13 @@ const $ = {
   CreditsApi: Symbol.for("CreditsApi"),
   CreditsRepository: Symbol.for("CreditsRepository"),
   GetBalanceUseCase: Symbol.for("GetBalanceUseCase"),
+  PdfApi: Symbol.for("PdfApi"),
+  PdfRepository: Symbol.for("PdfRepository"),
+  UploadPdfUseCase: Symbol.for("UploadPdfUseCase"),
+  ListPdfsUseCase: Symbol.for("ListPdfsUseCase"),
+  GetPdfUseCase: Symbol.for("GetPdfUseCase"),
+  UpdatePdfProgressUseCase: Symbol.for("UpdatePdfProgressUseCase"),
+  DeletePdfUseCase: Symbol.for("DeletePdfUseCase"),
 };
 
 export { $ };
