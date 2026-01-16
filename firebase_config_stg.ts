@@ -2,13 +2,20 @@ import { initializeApp } from 'firebase/app';
 import type { Auth } from 'firebase/auth';
 import {
   browserLocalPersistence,
+  connectAuthEmulator,
   // @ts-expect-error - getReactNativePersistence is not a function
   getReactNativePersistence,
   initializeAuth,
 } from 'firebase/auth';
+import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
+import { connectStorageEmulator, getStorage } from 'firebase/storage';
 import { Platform } from 'react-native';
 
-// Initialize Firebase
+// ⚠️ IMPORTANTE: Control de entorno
+// Por defecto, usa EMULADORES en desarrollo para evitar costos
+const USE_EMULATORS = __DEV__; // true en desarrollo, false en producción
+
+// Configuración de Firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyDnsbzIjUkWBC4m-2C1LV_OSkYuyGmfDcc',
   authDomain: 'booked11-8b5df.firebaseapp.com',
@@ -19,6 +26,7 @@ const firebaseConfig = {
   measurementId: 'G-GQ7VP2DE32',
 };
 
+// Inicializar Firebase App
 const app = initializeApp(firebaseConfig);
 
 // Inicializar Auth con persistencia según la plataforma
@@ -39,4 +47,40 @@ if (Platform.OS === 'web') {
   });
 }
 
-export { app, auth };
+// Inicializar Firestore y Storage
+const firestore = getFirestore(app);
+const storage = getStorage(app);
+
+// 🔥 CONECTAR A EMULADORES EN DESARROLLO
+if (USE_EMULATORS) {
+  // Determinar el host correcto según la plataforma
+  const emulatorHost =
+    Platform.OS === 'android' ? '10.0.2.2' : 'localhost';
+
+  console.warn(
+    '🔥 FIREBASE EMULATORS ACTIVOS - No se realizarán cargos reales'
+  );
+  console.warn(`📍 Host: ${emulatorHost}`);
+
+  try {
+    // Conectar Auth Emulator
+    connectAuthEmulator(auth, `http://${emulatorHost}:9099`, {
+      disableWarnings: true,
+    });
+
+    // Conectar Firestore Emulator
+    connectFirestoreEmulator(firestore, emulatorHost, 8080);
+
+    // Conectar Storage Emulator
+    connectStorageEmulator(storage, emulatorHost, 9199);
+
+    console.warn('✅ Emuladores conectados correctamente');
+  } catch (error) {
+    console.error('❌ Error conectando emuladores:', error);
+    console.error('Asegúrate de ejecutar: npm run emulators');
+  }
+} else {
+  console.log('🌐 Usando Firebase en PRODUCCIÓN');
+}
+
+export { app, auth, firestore, storage };

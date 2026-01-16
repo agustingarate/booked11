@@ -8,7 +8,10 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "emulators": "npx firebase-tools emulators:start",
+    "emulators:export": "npx firebase-tools emulators:export ./firebase-emulator-data",
+    "emulators:import": "npx firebase-tools emulators:start --import=./firebase-emulator-data"
   },
   "dependencies": {
     "@config-plugins/react-native-blob-util": "^12.0.0",
