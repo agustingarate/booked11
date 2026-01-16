@@ -10,20 +10,14 @@ import { usePdfQuery } from '../hooks/usePdfQueries';
  * ViewModel para visualizar y gestionar un PDF específico.
  * Usa TanStack Query para manejar el estado.
  */
-export const usePdfViewerViewModel = (userId: string, pdfId: string) => {
+export const usePdfViewerViewModel = (pdfId: string) => {
   // Query para obtener el PDF
-  const { data: pdf, isLoading, error, refetch } = usePdfQuery(userId, pdfId);
+  const { data: pdf, isLoading, error, refetch } = usePdfQuery(pdfId);
 
   // Mutations
-  const updateProgressMutation = useUpdateProgressMutation(userId);
-  const deleteMutation = useDeletePdfMutation(userId);
+  const updateProgressMutation = useUpdateProgressMutation();
+  const deleteMutation = useDeletePdfMutation();
 
-  /**
-   * Actualiza el progreso de lectura.
-   *
-   * @param currentPage - Página actual.
-   * @param totalPages - Total de páginas.
-   */
   const updateProgress = useCallback(
     (currentPage: number, totalPages: number) => {
       const progress = Math.round((currentPage / totalPages) * 100);
@@ -46,11 +40,11 @@ export const usePdfViewerViewModel = (userId: string, pdfId: string) => {
 
   return {
     // Estado
-    pdf: pdf || null,
+    pdf: pdf ?? null,
     isLoading,
     isUpdating: updateProgressMutation.isPending,
     isDeleting: deleteMutation.isPending,
-    error: error || deleteMutation.error || null,
+    error: error ?? deleteMutation.error ?? null,
 
     // Acciones
     loadPdf: refetch,

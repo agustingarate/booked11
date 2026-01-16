@@ -11,16 +11,22 @@ import { $ } from '@common/domain/di/Types';
 import type { GetPdfUseCase } from '@common/domain/usecases/GetPdfUseCase';
 import type { ListPdfsUseCase } from '@common/domain/usecases/ListPdfsUseCase';
 import { resolver } from '@main/domain/di/Register';
+import { useAuthStore } from '@main/domain/store';
 
 /**
  * Hook para obtener la lista de PDFs con paginación infinita.
  * Ejemplo de uso con TanStack Query Infinite Queries.
  */
 export const usePdfListQuery = (
-  userId: string,
   pageSize = 10
 ): UseInfiniteQueryResult<InfiniteData<PdfListResponse>, Error> => {
   const listPdfsUseCase = resolver.resolve<ListPdfsUseCase>($.ListPdfsUseCase);
+
+  const userId = useAuthStore((state) => state.user?.id);
+
+  if (!userId) {
+    throw new Error('User not found');
+  }
 
   return useInfiniteQuery<
     PdfListResponse,
@@ -42,7 +48,7 @@ export const usePdfListQuery = (
     getNextPageParam: (lastPage): DocumentSnapshot | undefined => {
       return lastPage.hasMore ? lastPage.lastDoc : undefined;
     },
-    staleTime: 1000 * 60 * 5, // 5 minutos
+    staleTime: 1000 * 60 * 10, // 10 minutos
     enabled: !!userId,
   });
 };
@@ -51,11 +57,16 @@ export const usePdfListQuery = (
  * Hook para obtener un PDF específico.
  */
 export const usePdfQuery = (
-  userId: string,
   pdfId: string,
   enabled = true
 ): UseQueryResult<PdfModel, Error> => {
   const getPdfUseCase = resolver.resolve<GetPdfUseCase>($.GetPdfUseCase);
+
+  const userId = useAuthStore((state) => state.user?.id);
+
+  if (!userId) {
+    throw new Error('User not found');
+  }
 
   return useQuery({
     queryKey: ['pdf', userId, pdfId],
@@ -64,6 +75,6 @@ export const usePdfQuery = (
       return pdf;
     },
     enabled: enabled && !!pdfId && !!userId,
-    staleTime: 1000 * 60 * 5, // 5 minutos
+    staleTime: 1000 * 60 * 10, // 10 minutos
   });
 };

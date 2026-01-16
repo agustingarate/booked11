@@ -1,12 +1,13 @@
 import { useMemo } from 'react';
 
+import { useUploadPdfMutation } from '../hooks/usePdfMutations';
 import { usePdfListQuery } from '../hooks/usePdfQueries';
 
 /**
  * ViewModel para la lista de PDFs.
  * Usa TanStack Query para manejar el estado y cache.
  */
-export const usePdfListViewModel = (userId: string, pageSize = 10) => {
+export const useHomeViewModel = () => {
   // Usar el hook de TanStack Query
   const {
     data,
@@ -16,7 +17,9 @@ export const usePdfListViewModel = (userId: string, pageSize = 10) => {
     fetchNextPage,
     refetch,
     error,
-  } = usePdfListQuery(userId, pageSize);
+  } = usePdfListQuery(10);
+
+  const uploadPdf = useUploadPdfMutation();
 
   // Aplanar los PDFs de todas las páginas
   const pdfs = useMemo(() => {
@@ -33,5 +36,6 @@ export const usePdfListViewModel = (userId: string, pageSize = 10) => {
     // Acciones
     loadMore: fetchNextPage,
     refresh: refetch,
+    uploadPdf,
   };
 };

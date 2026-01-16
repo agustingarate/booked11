@@ -9,7 +9,6 @@ import {
   doc,
   getDoc,
   getDocs,
-  getFirestore,
   limit,
   orderBy,
   query,
@@ -20,12 +19,11 @@ import {
 import {
   deleteObject,
   getDownloadURL,
-  getStorage,
   ref,
   uploadBytesResumable,
 } from 'firebase/storage';
 
-import { app } from '../../../../../../firebase_config_stg';
+import * as firebaseConfig from '../../../../../../firebase_config_stg';
 import type {
   CreatePdfDto,
   PdfListParams,
@@ -42,10 +40,11 @@ import type { PdfApi } from '../api/PdfApi';
 
 /**
  * Implementación de PdfApi usando Firebase Storage y Firestore.
+ * Usa las instancias ya configuradas (con emuladores en desarrollo).
  */
 class FirebasePdfApiImpl implements PdfApi {
-  private readonly storage = getStorage(app);
-  private readonly firestore = getFirestore(app);
+  private readonly storage = firebaseConfig.storage;
+  private readonly firestore = firebaseConfig.firestore;
 
   /**
    * Sube un archivo PDF a Firebase Storage y crea el registro en Firestore.

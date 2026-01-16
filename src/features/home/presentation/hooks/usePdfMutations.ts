@@ -9,12 +9,19 @@ import type { DeletePdfUseCase } from '@common/domain/usecases/DeletePdfUseCase'
 import type { UpdatePdfProgressUseCase } from '@common/domain/usecases/UpdatePdfProgressUseCase';
 import type { UploadPdfUseCase } from '@common/domain/usecases/UploadPdfUseCase';
 import { resolver } from '@main/domain/di/Register';
+import { useAuthStore } from '@main/domain/store';
 
 /**
  * Hook para manejar la mutación de subida de PDF.
  * Ejemplo de uso con TanStack Query.
  */
-export const useUploadPdfMutation = (userId: string) => {
+export const useUploadPdfMutation = () => {
+  const userId = useAuthStore((state) => state.user?.id);
+
+  if (!userId) {
+    throw new Error('User not found');
+  }
+
   const queryClient = useQueryClient();
 
   const uploadPdfUseCase = resolver.resolve<UploadPdfUseCase>(
@@ -38,10 +45,15 @@ export const useUploadPdfMutation = (userId: string) => {
 /**
  * Hook para manejar la mutación de actualización de progreso.
  */
-export const useUpdateProgressMutation = (userId: string) => {
+export const useUpdateProgressMutation = () => {
   const updateProgressUseCase = resolver.resolve<UpdatePdfProgressUseCase>(
     $.UpdatePdfProgressUseCase
   );
+  const userId = useAuthStore((state) => state.user?.id);
+
+  if (!userId) {
+    throw new Error('User not found');
+  }
 
   return useMutation({
     mutationFn: (dto: UpdatePdfProgressDto) => {
@@ -60,8 +72,14 @@ export const useUpdateProgressMutation = (userId: string) => {
 /**
  * Hook para manejar la mutación de eliminación de PDF.
  */
-export const useDeletePdfMutation = (userId: string) => {
+export const useDeletePdfMutation = () => {
   const queryClient = useQueryClient();
+
+  const userId = useAuthStore((state) => state.user?.id);
+
+  if (!userId) {
+    throw new Error('User not found');
+  }
 
   const deletePdfUseCase = resolver.resolve<DeletePdfUseCase>(
     $.DeletePdfUseCase

@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { View } from 'react-native';
 
+import type { PdfModel } from '@common/data/models/PdfModel';
 import {
   useBreakpointValue,
   useBreakpoints,
@@ -19,8 +20,8 @@ export interface PDFItem {
 }
 
 interface PDFGridProps {
-  items: PDFItem[];
-  onItemPress?: (item: PDFItem) => void;
+  items: PdfModel[];
+  onItemPress?: (pdfId: string) => void;
 }
 
 const PDFGrid: FC<PDFGridProps> = ({ items, onItemPress }) => {
@@ -41,10 +42,13 @@ const PDFGrid: FC<PDFGridProps> = ({ items, onItemPress }) => {
       {items.map((item) => (
         <FileComponent
           key={item.id}
-          title={item.title}
-          description={item.description}
-          progress={item.progress}
-          onPress={() => onItemPress?.(item)}
+          title={item.fileName}
+          description={`${item.totalPages} páginas`} //TODO: add date of upload
+          progress={{
+            numberProgress: item.progress,
+            semanticProgress: `${item.progress}%`,
+          }}
+          onPress={() => onItemPress?.(item.id)}
           width={cardWidth}
         />
       ))}
