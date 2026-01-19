@@ -1,12 +1,14 @@
 import { useRouter } from 'expo-router';
+import { useEffect } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import PDFGrid from './components/PDFGrid';
-import { useHomeViewModel } from './viewModels/HomeViewModel';
+import PDFGrid from '../components/PDFGrid';
+import { useHomeViewModel } from '../viewModels/HomeViewModel';
 
 import { useI18n } from '@common/domain/hooks/i18n';
 import { Button } from '@common/index';
+import { ShowToast } from '@common/presentation/components/atoms/Toast';
 
 export default function HomeScreen() {
   const { top } = useSafeAreaInsets();
@@ -16,7 +18,22 @@ export default function HomeScreen() {
     router.push(`/reading/${pdfId}`);
   };
 
-  const { isLoading, pdfs, loadMore, refresh, uploadPdf } = useHomeViewModel();
+  const {
+    isLoading,
+    pdfs,
+    loadMore,
+    refresh,
+    uploadPdf,
+    uploadPdfAsync,
+    reset,
+    error,
+  } = useHomeViewModel();
+
+  useEffect(() => {
+    if (error) {
+      ShowToast({ config: 'error', title: error.message });
+    }
+  }, [error]);
 
   return (
     <View className="flex-1">
@@ -40,17 +57,17 @@ export default function HomeScreen() {
           />
         </View>
       </ScrollView>
-      <View className="absolute bottom-10 right-10">
+      <View className="absolute bottom-7 right-7">
         <Button
           leftIcon="add"
           onPress={() => {
-            uploadPdf.mutate({
+            uploadPdf({
               fileName:
                 'Apple_Developer_Program_License_Agreement_KH6N546W28.pdf',
               totalPages: 97,
               fileSize: 634560,
               fileUri:
-                'http://127.0.0.1:9199/v0/b/booked11-8b5df.firebasestorage.app/o/users%2FH5ZWN89pTQen1g2A5TeYVGEFVf7h%2Fpdfs%2FApple_Developer_Program_License_Agreement_KH6N546W28.pdf?alt=media&token=835687ef-eb79-4690-9db7-b4a8ef53ab50',
+                'http://127.0.0.1:9199/v0/b/booked11-8b5df.firebasestorage.app/o/Apple_Developer_Program_License_Agreement_KH6N546W28.pdf?alt=media&token=c03254b9-cbc2-4bac-85df-5470d4b2ca31',
             });
           }}
         />

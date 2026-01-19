@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import type { ViewStyle } from 'react-native';
 import { View } from 'react-native';
 import Animated, {
+  cancelAnimation,
   Easing,
   useAnimatedStyle,
   useSharedValue,
@@ -32,11 +33,13 @@ const LinearProgressBar: React.FC<LinearProgressBarProps> = ({
   const normalizedProgress = progress > 1 ? progress / 100 : progress;
   const clampedProgress = Math.max(0, Math.min(1, normalizedProgress));
 
-  const [currentProgress, setCurrentProgress] = useState(0);
+  // Shared values para las animaciones
+  const animatedProgress = useSharedValue(0);
   const indeterminatePosition = useSharedValue(0);
 
   useEffect(() => {
     if (isLoading) {
+      // Iniciar animación indeterminada
       indeterminatePosition.value = withRepeat(
         withTiming(1, {
           duration: 1500,
@@ -46,21 +49,36 @@ const LinearProgressBar: React.FC<LinearProgressBarProps> = ({
         false
       );
     } else {
-      setCurrentProgress(clampedProgress);
+      // Detener animación indeterminada
+      cancelAnimation(indeterminatePosition);
+      indeterminatePosition.value = 0;
     }
-  }, [isLoading, clampedProgress, indeterminatePosition]);
+  }, [indeterminatePosition, isLoading]);
 
-  const progressAnimatedStyle = useAnimatedStyle(() => {
-    if (isLoading) {
-      const width = 0.3;
-      const translateX = indeterminatePosition.value * (1 + width);
-
-      return {
-        width: `${width * 100}%`,
-        transform: [{ translateX: (translateX - width) * 100 * 3.33 }],
-      };
+  useEffect(() => {
+    if (!isLoading) {
+      // Animar el progreso solo cuando no está en loading
+      animatedProgress.value = withTiming(clampedProgress, {
+        duration: 300,
+        easing: Easing.out(Easing.ease),
+      });
     }
-    return {};
+  }, [isLoading, clampedProgress, animatedProgress]);
+
+  const indeterminateStyle = useAnimatedStyle(() => {
+    const width = 0.3;
+    const translateX = indeterminatePosition.value * (1 + width);
+
+    return {
+      width: `${width * 100}%`,
+      transform: [{ translateX: (translateX - width) * 100 * 3.33 }],
+    };
+  });
+
+  const determinateStyle = useAnimatedStyle(() => {
+    return {
+      width: `${animatedProgress.value * 100}%`,
+    };
   });
 
   return (
@@ -73,15 +91,12 @@ const LinearProgressBar: React.FC<LinearProgressBarProps> = ({
       {isLoading ? (
         <Animated.View
           className={cn('h-full bg-primary rounded-full', progressClassName)}
-          style={[progressStyle, progressAnimatedStyle]}
+          style={[progressStyle, indeterminateStyle]}
         />
       ) : (
-        <View
-          className={cn(
-            'h-full bg-primary rounded-full transition-all duration-300 origin-left',
-            progressClassName
-          )}
-          style={[progressStyle, { width: `${currentProgress * 100}%` }]}
+        <Animated.View
+          className={cn('h-full bg-primary rounded-full', progressClassName)}
+          style={[progressStyle, determinateStyle]}
         />
       )}
     </View>

@@ -37,7 +37,7 @@ export const useUploadPdfMutation = () => {
       void queryClient.invalidateQueries({ queryKey: ['pdfs', userId] });
     },
     onError: (error) => {
-      console.error('Error uploading PDF:', error);
+      return error;
     },
   });
 };

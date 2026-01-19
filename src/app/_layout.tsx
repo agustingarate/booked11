@@ -1,3 +1,5 @@
+
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -5,10 +7,12 @@ import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
 import { ResolverProvider } from '@common/domain/hooks/Resolver';
+import { GenericToast } from '@common/presentation/components/atoms/Toast';
 import '@common/presentation/i18n';
 import { QueryClientProvider } from '@common/presentation/providers/QueryClientProvider';
 import { registerDependencies, resolver } from '@main/domain/di/Register';
 import { useAuthStore } from '@main/domain/store';
+
 import '../../global.css';
 
 // Mantiene el splash screen visible hasta que lo ocultemos manualmente
@@ -80,9 +84,12 @@ export default function RootLayout() {
 
   return (
     <ResolverProvider resolver={resolver}>
-      <QueryClientProvider>
-        <Slot />
-      </QueryClientProvider>
+      <ActionSheetProvider>
+        <QueryClientProvider>
+          <Slot />
+          <GenericToast />
+        </QueryClientProvider>
+      </ActionSheetProvider>
     </ResolverProvider>
   );
 }

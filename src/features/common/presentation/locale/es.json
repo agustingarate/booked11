@@ -113,12 +113,15 @@
     },
     "homeScreen": {
       "myLibrary": "Mi Biblioteca",
-      "exploreAndContinue": "Explora y continúa con tus lecturas"
+      "exploreAndContinue": "Explora y continúa con tus lecturas",
+      "emptyState": {
+        "title": "Biblioteca vacía",
+        "description": "Agrega documentos para comenzar a leer"
+      }
     },
     "pdfViewer": {
       "updateProgress": "Actualizar progreso",
       "reinitializeProgress": "Reiniciar progreso"
-
     },
     "rootScreen": {
       "home": "Home",
